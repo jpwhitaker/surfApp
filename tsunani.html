@@ -4,6 +4,9 @@
 
 <body>
   {{> signUp}}
+    {{#if currentUser}}
+      {{currentUser.username}}
+    {{/if}}
 </body>
 
 <template name="signUp">
@@ -12,3 +15,6 @@
   <input type="password" id="password" placeholder="choose password"/>
   <input type="button" id="submit" value="Sign Up!" />
 </template>
+
+
+

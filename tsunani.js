@@ -4,6 +4,7 @@ if (Meteor.isClient) {
   Template.signUp.events({
     'click #submit' : function () {
       // template data, if any, is available in 'this'
+
       var phoneNumber = document.getElementById('phoneNumber').value;
       var password = document.getElementById('password').value
         Accounts.createUser({
@@ -12,20 +13,17 @@ if (Meteor.isClient) {
         'profile' : {
           'notifyHeight' : [3,5],
           'notifyShores' : ['n','s','e','w'],
-          'notifyTime'   : 0600,
+          'notifyTime'   : 600,
           'notifyText'   : true,
           'notifyEmail'  : false,
           'email'        : '',
           'notifications': true
         },
-
-
-       })
-        console.log(phoneNumber)
-        console.log(password);
-        ;
+      })
     }
   });
+
+
 }
 
 if (Meteor.isServer) {
