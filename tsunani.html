@@ -3,11 +3,11 @@
 </head>
 
 <body>
-  {{> signUp}}
-    {{#if currentUser}}
-      {{currentUser.username}}
-    {{else}}
-      "Sign Up or Log in Mayne!"  
+  {{#if currentUser}}
+    {{currentUser.username}}
+  {{else}}
+    {{> signUp}}
+      "Sign Up!"  
     {{/if}}
 </body>
 
