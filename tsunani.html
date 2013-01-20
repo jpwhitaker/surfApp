@@ -4,7 +4,7 @@
 
 <body>
   {{#if currentUser}}
-    {{currentUser.username}}
+    {{> userSettings}}
   {{else}}
     {{> signUp}}
       "Sign Up!"  
@@ -17,5 +17,14 @@
   <input type="button" id="submit" value="Sign Up!" />
 </template>
 
+<template name="userSettings">
+  <h1>{{currentUser.username}}</h1>
+  <div class="btn-group" data-toggle="buttons-checkbox">
+    <button type="button" class="btn btn-primary north">North</button>
+    <button type="button" class="btn btn-primary south">South</button>
+    <button type="button" class="btn btn-primary east">East</button>
+    <button type="button" class="btn btn-primary west">West</button>
+  </div>
+</template>
 
 
