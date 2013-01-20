@@ -3,11 +3,15 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     test:function(){
-        Meteor.users.update(
-          {_id:Meteor.userId()}, 
-          {
-            $set: {"profile.notifyShores.north" : true}
-          });
+// console logs the value of profile.verified
+      console.log(Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.verified)
+        // Meteor.users.update(
+        //   {_id:Meteor.userId()},
+        //   {
+        //     $set: {"profile.notifyShores.north" : true}
+        //   });
     }
   })
 

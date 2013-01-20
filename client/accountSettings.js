@@ -28,8 +28,7 @@ Meteor.startup(function () {
 
     Template.userSettings.events({
     'click .verfied' : function () {
-    Meteor.user().profile.notifyShores.north = true;
-    console.log('touched')
+    Meteor.call('test');
     }
   })
 
