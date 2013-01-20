@@ -7,14 +7,14 @@ Meteor.startup(function () {
       
     }
   }
- 
+ //Display functions//
   Template.userSettings.verified = function(){
     return Meteor.users.findOne(
         {_id:Meteor.userId()},
         {fields: {profile:1}}).profile.verified
   }
 
-  Template.userSettings.notifyText = function(){
+  Template.userSettings.notifyTextTrue = function(){
     if(Meteor.users.findOne(
         {_id:Meteor.userId()},
         {fields: {profile:1}}).profile.notifyText === true){
@@ -22,9 +22,23 @@ Meteor.startup(function () {
     }
   }
 
+  Template.userSettings.notifyTextFalse = function(){
+    if(Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.notifyText === false){
+      return "active";
+    }
+  }
 
-  
+  Template.userSettings.minHeight = function(){
+    return Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.notifyHeight[0] 
+    
+  }
 
+
+  //Events//
   //Sets profile.verified to true if the pin matches
   Template.userSettings.events({
   'click .verifyButton' : function() {
@@ -38,41 +52,57 @@ Meteor.startup(function () {
       console.log('yes')
     } 
     else {console.log('no')}}
-  })
+  });
 
-
-  
-    Template.userSettings.events({
-    'click .verifiedTrue' : function () {
-        console.log ('clicked true')
-        Meteor.users.update(
-          {_id:Meteor.userId()},
-          {
-            $set: {"profile.verified" : true}
-          });
-      }
-    })
-
-
-        Template.userSettings.events({
-    'click .verifiedFalse' : function () {
-        console.log ('clicked false')
-          Meteor.users.update(
-          {_id:Meteor.userId()},
-          {
-            $set: {"profile.verified" : false}
-          });
-      }
-    })
-
-
-
-    Template.userSettings.events({
-    'click .north' : function () {
-    console.log('touched')
+  Template.userSettings.events({
+    'click .notifyTextTrue' : function() {
+      Meteor.users.update(
+        {_id:Meteor.userId()},
+        {$set: {"profile.notifyText" : true}
+        })
     }
   })
 
+    Template.userSettings.events({
+    'click .notifyTextFalse' : function() {
+      Meteor.users.update(
+        {_id:Meteor.userId()},
+        {$set: {"profile.notifyText" : false}
+        })
+    }
+  })
+ 
+  Template.userSettings.events({
+  'click .verifiedTrue' : function () {
+      console.log ('clicked true')
+      Meteor.users.update(
+        {_id:Meteor.userId()},
+        {
+          $set: {"profile.verified" : true}
+        });
+    }
+  })
+
+  Template.userSettings.events({
+  'click .verifiedFalse' : function () {
+      console.log ('clicked false')
+        Meteor.users.update(
+        {_id:Meteor.userId()},
+        {
+          $set: {"profile.verified" : false}
+        });
+    }
+  })
+
+  Template.userSettings.events({
+    'keyup .minHeight': function (e) {
+       Meteor.users.update(
+        {_id:Meteor.userId()},
+        {$set: {"profile.notifyHeight.0" : +e.target.value}
+        });
+       
+    }
+  })
 
 });
 

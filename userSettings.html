@@ -10,15 +10,15 @@
     <button type="button" class="btn btn-success verifyButton">Verify your number</button></form></p>
 
   <p><form class="form-inline">Notify by text: <div class="btn-group" data-toggle="buttons-radio">
-    <button type="button" class="btn btn-primary notifyTextTrue {{notifyText}}">On</button>
-    <button type="button" class="btn btn-primary notifyTextFalse">Off</button>
+    <button type="button" class="btn btn-primary notifyTextTrue {{notifyTextTrue}}">On</button>
+    <button type="button" class="btn btn-primary notifyTextFalse {{notifyTextFalse}}">Off</button>
   </div></form></p>
 
   <p><form class="form-inline">Notify by height: <div class="input-append">
-  <input class="input-mini" id="appendedInput" type="text">
+  <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}" type="text">
   <span class="add-on">ft</span>
 </div> to <div class="input-append">
-  <input class="input-mini" id="appendedInput" type="text">
+  <input class="input-mini maxHeight" id="appendedInput" type="text">
   <span class="add-on">ft</span>
 </div></form></p>
 
