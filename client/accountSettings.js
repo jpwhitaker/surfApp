@@ -100,14 +100,49 @@ Meteor.startup(function () {
   })
 
   Template.userSettings.events({
+    'click .dir': function (e) {
+       console.log(e.target.id) 
+       switch (e.target.id) {
+   case "north":
+         Meteor.users.update(
+        {_id:Meteor.userId()},
+        {
+          $set: {"profile.notifyShores.north" : true}
+        });
+      break;
+   case "south":
+        Meteor.users.update(
+        {_id:Meteor.userId()},
+        {
+          $set: {"profile.notifyShores.south" : true}
+        });
+      break;
+   case "east":
+        Meteor.users.update(
+        {_id:Meteor.userId()},
+        {
+          $set: {"profile.notifyShores.east" : true}
+        });
+      break;
+   case "west":
+        Meteor.users.update(
+        {_id:Meteor.userId()},
+        {
+          $set: {"profile.notifyShores.west" : true}
+        });
+      break;
+}      
+    }
+  })
+
+
+  Template.userSettings.events({
     'click .save': function () {
        Meteor.users.update(
         {_id:Meteor.userId()},
         {$set: {"profile.notifyHeight" : 
         [+document.querySelector('.minHeight').value,+document.querySelector('.maxHeight').value] }
-        });
-
-       
+        });       
     }
   })
 
