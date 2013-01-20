@@ -37,6 +37,11 @@ Meteor.startup(function () {
     
   }
 
+  Template.userSettings.maxHeight = function(){
+    return Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.notifyHeight[1] 
+  }
 
   //Events//
   //Sets profile.verified to true if the pin matches
@@ -95,11 +100,13 @@ Meteor.startup(function () {
   })
 
   Template.userSettings.events({
-    'keyup .minHeight': function (e) {
+    'click .save': function () {
        Meteor.users.update(
         {_id:Meteor.userId()},
-        {$set: {"profile.notifyHeight.0" : +e.target.value}
+        {$set: {"profile.notifyHeight" : 
+        [+document.querySelector('.minHeight').value,+document.querySelector('.maxHeight').value] }
         });
+
        
     }
   })

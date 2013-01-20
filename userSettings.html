@@ -15,10 +15,11 @@
   </div></form></p>
 
   <p><form class="form-inline">Notify by height: <div class="input-append">
-  <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}" type="text">
+    <!-- Odd bug where minHeight gets value from maxHeight, fixed with empty string in minHeight-->
+  <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}" value="" type="text">
   <span class="add-on">ft</span>
 </div> to <div class="input-append">
-  <input class="input-mini maxHeight" id="appendedInput" type="text">
+  <input class="input-mini maxHeight" id="appendedInput" placeholder="{{maxHeight}}"  type="text">
   <span class="add-on">ft</span>
 </div></form></p>
 
@@ -66,6 +67,7 @@
 
 </form></p>
 
+<p><button type="button" class="btn btn-success save">Save Changes</button></p>
 
 
   <p><div class="btn-group" data-toggle="buttons-radio">
