@@ -1,6 +1,8 @@
 if (Meteor.isServer) {
   Meteor.startup(function () {
 
+    console.log(this.userID, 'yo')
+
     var verifyNumber = function(user, options){
       //SMS Meteor!!
       Meteor.http.post('https://api.twilio.com/2010-04-01/Accounts/AC247cdc55daacf786ddd9c6ea0e51534f/SMS/Messages.json',
