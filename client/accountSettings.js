@@ -21,12 +21,22 @@ Meteor.startup(function () {
     Template.userSettings.events({
     'click .verifiedTrue' : function () {
         console.log ('clicked true')
+        Meteor.users.update(
+          {_id:Meteor.userId()},
+          {
+            $set: {"profile.verified" : true}
+          });
       }
     })
 
         Template.userSettings.events({
     'click .verifiedFalse' : function () {
         console.log ('clicked false')
+          Meteor.users.update(
+          {_id:Meteor.userId()},
+          {
+            $set: {"profile.verified" : false}
+          });
       }
     })
 
