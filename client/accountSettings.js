@@ -7,7 +7,11 @@ Meteor.startup(function () {
       if(Meteor.user().profile.notifyShores.north === false){
         
         $('.north').addClass('active');
-        console.log('north') 
+        console.log() 
+
+
+
+
       }
     }
   }
@@ -17,6 +21,36 @@ Meteor.startup(function () {
         {_id:Meteor.userId()},
         {fields: {profile:1}}).profile.verified
   }
+
+
+        Template.userSettings.events({
+        'click .verifyButton' : function() {
+          if(Meteor.users.findOne({_id:Meteor.userId()},{fields: {profile:1}}).profile.verifyPin 
+            === +document.getElementById('pin').value)
+            {
+              Meteor.users.update(
+              {_id:Meteor.userId()},
+              {$set: {"profile.verified" : true}
+              });
+            console.log('yes')
+          } 
+        else {console.log('no')}}
+      })
+
+  // if(Meteor.users.findOne(
+  //           {_id:Meteor.userId()},
+  //           {fields: {profile:1}}).profile.verifyPin === document.getElementById('pin').value){
+  //           console.log('yay')
+  //         }
+
+
+    // Template.userSettings.events({
+    // 'click .verifyButton' : function () {
+    //     console.log ('clicked true')
+    //   }
+    // })
+
+
   
     Template.userSettings.events({
     'click .verifiedTrue' : function () {
@@ -28,6 +62,11 @@ Meteor.startup(function () {
           });
       }
     })
+
+
+
+
+
 
         Template.userSettings.events({
     'click .verifiedFalse' : function () {
