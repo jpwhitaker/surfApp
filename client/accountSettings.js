@@ -1,10 +1,26 @@
 Meteor.startup(function () {
   Template.userSettings.profile = function(){  
     if(! Meteor.loggingIn()){
-      console.log(Meteor.user().profile.notifyTime);
+      //necessary to load template before getting user data.  ask CJ about ui-bootstrap
+      // console.log(Meteor.user().profile.notifyShores.north)
+      //toggle directions
+      if(Meteor.user().profile.notifyShores.north === false){
+        
+        $('.north').addClass('active');
+        console.log('north') 
+      }
     }
   }
+  Template.userSettings.northIsActive = function(){
+    if(Meteor.user().profile.notifyShores.north !== false){
+      return "active";
+    }
+  }
+
+
+
 });
+
 
 
 

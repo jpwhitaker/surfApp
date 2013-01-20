@@ -12,7 +12,7 @@ if (Meteor.isClient){
           'verifyPin'    : verifyPin,
           'verified'     : false,
           'notifyHeight' : [3,5],
-          'notifyShores' : ['n','s','e','w'],
+          'notifyShores' : {'north':false, 'south':false, 'east':false, 'west':false},
           'notifyTime'   : 600,
           'notifyText'   : true,
           'notifyEmail'  : false,
