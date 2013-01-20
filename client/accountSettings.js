@@ -4,15 +4,7 @@ Meteor.startup(function () {
       //necessary to load template before getting user data.  ask CJ about ui-bootstrap
       // console.log(Meteor.user().profile.notifyShores.north)
       //toggle directions
-      if(Meteor.user().profile.notifyShores.north === false){
-        
-        $('.north').addClass('active');
-        console.log() 
-
-
-
-
-      }
+      
     }
   }
  
@@ -22,33 +14,31 @@ Meteor.startup(function () {
         {fields: {profile:1}}).profile.verified
   }
 
-
-        Template.userSettings.events({
-        'click .verifyButton' : function() {
-          if(Meteor.users.findOne({_id:Meteor.userId()},{fields: {profile:1}}).profile.verifyPin 
-            === +document.getElementById('pin').value)
-            {
-              Meteor.users.update(
-              {_id:Meteor.userId()},
-              {$set: {"profile.verified" : true}
-              });
-            console.log('yes')
-          } 
-        else {console.log('no')}}
-      })
-
-  // if(Meteor.users.findOne(
-  //           {_id:Meteor.userId()},
-  //           {fields: {profile:1}}).profile.verifyPin === document.getElementById('pin').value){
-  //           console.log('yay')
-  //         }
+  Template.userSettings.notifyText = function(){
+    if(Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.notifyText === true){
+      return "active";
+    }
+  }
 
 
-    // Template.userSettings.events({
-    // 'click .verifyButton' : function () {
-    //     console.log ('clicked true')
-    //   }
-    // })
+  
+
+  //Sets profile.verified to true if the pin matches
+  Template.userSettings.events({
+  'click .verifyButton' : function() {
+    if(Meteor.users.findOne({_id:Meteor.userId()},{fields: {profile:1}}).profile.verifyPin 
+      === +document.getElementById('pin').value)
+      {
+        Meteor.users.update(
+        {_id:Meteor.userId()},
+        {$set: {"profile.verified" : true}
+        });
+      console.log('yes')
+    } 
+    else {console.log('no')}}
+  })
 
 
   
@@ -62,10 +52,6 @@ Meteor.startup(function () {
           });
       }
     })
-
-
-
-
 
 
         Template.userSettings.events({

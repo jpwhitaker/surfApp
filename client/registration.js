@@ -14,7 +14,7 @@ if (Meteor.isClient){
           'notifyHeight' : [3,5],
           'notifyShores' : {'north':false, 'south':false, 'east':false, 'west':false},
           'notifyTime'   : 600,
-          'notifyText'   : true,
+          'notifyText'   : false,
           'notifyEmail'  : false,
           'email'        : '',
           'notifications': true
