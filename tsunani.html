@@ -19,6 +19,10 @@
 
 <template name="userSettings">
   <h1>{{currentUser.username}}</h1>
+  <p><div class="btn-group" data-toggle="buttons-radio">
+    <button type="button" class="btn btn-primary verified true">Verified</button>
+    <button type="button" class="btn btn-primary verified false">Unverified</button>
+  </div></p>
   <div class="btn-group" data-toggle="buttons-checkbox">
     <button type="button" class="btn btn-primary north {{northIsActive}}">North</button>
     <button type="button" class="btn btn-primary south">South</button>

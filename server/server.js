@@ -3,18 +3,13 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     test:function(){
-      console.log('i want to eat pizza')
         Meteor.users.update(
-          {_id:'d8ed59de-fabb-4a40-9ae0-70cb6d5dabdc'}, 
+          {_id:Meteor.userId()}, 
           {
             $set: {"profile.notifyShores.north" : true}
           });
     }
   })
-
-
-
-    console.log(this.userID, 'yo')
 
     var verifyNumber = function(user, options){
       //SMS Meteor!!
