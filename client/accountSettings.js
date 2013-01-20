@@ -11,28 +11,30 @@ Meteor.startup(function () {
       }
     }
   }
-  Template.userSettings.northIsActive = function(){
-    if(Meteor.user().profile.notifyShores.north === false){
-      return "active";
-    } else {
-      return "";
-    }
-  }
+ 
   Template.userSettings.verified = function(){
     return Meteor.users.findOne(
         {_id:Meteor.userId()},
         {fields: {profile:1}}).profile.verified
   }
-  Template.userSettings.events({
-    'click .north' : function () {
-    Meteor.user().profile.notifyShores.north = true;
-    console.log('touched')
-    }
-  })
+  
+    Template.userSettings.events({
+    'click .verifiedTrue' : function () {
+        console.log ('clicked true')
+      }
+    })
+
+        Template.userSettings.events({
+    'click .verifiedFalse' : function () {
+        console.log ('clicked false')
+      }
+    })
+
+
 
     Template.userSettings.events({
-    'click .verfied' : function () {
-    Meteor.call('test');
+    'click .north' : function () {
+    console.log('touched')
     }
   })
 
