@@ -17,23 +17,6 @@
   <input type="button" id="submit" value="Sign Up!" />
 </template>
 
-<template name="userSettings">
-  <h1>{{currentUser.username}}</h1>
-  <p><div class="alert">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Verified:</strong> {{verified}}
-</div></p>
-  <p><div class="btn-group" data-toggle="buttons-radio">
-    <button type="button" class="btn btn-primary verifiedTrue">Verified</button>
-    <button type="button" class="btn btn-primary verifiedFalse">Unverified</button>
-  </div></p>
-  <div class="btn-group" data-toggle="buttons-checkbox">
-    <button type="button" class="btn btn-primary north {{northIsActive}}">North</button>
-    <button type="button" class="btn btn-primary south">South</button>
-    <button type="button" class="btn btn-primary east">East</button>
-    <button type="button" class="btn btn-primary west">West</button>
-  </div>
-  {{profile}}
-</template>
+
 
 
