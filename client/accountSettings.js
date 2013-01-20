@@ -18,7 +18,11 @@ Meteor.startup(function () {
       return "";
     }
   }
-
+  Template.userSettings.verified = function(){
+    return Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.verified
+  }
   Template.userSettings.events({
     'click .north' : function () {
     Meteor.user().profile.notifyShores.north = true;
