@@ -11,3 +11,5 @@ bootstrap
 email
 http
 underscore
+insecure
+autopublish

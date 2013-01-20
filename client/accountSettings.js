@@ -12,10 +12,19 @@ Meteor.startup(function () {
     }
   }
   Template.userSettings.northIsActive = function(){
-    if(Meteor.user().profile.notifyShores.north !== false){
+    if(Meteor.user().profile.notifyShores.north === false){
       return "active";
+    } else {
+      return "";
     }
   }
+
+  Template.userSettings.events({
+    'click .north' : function () {
+    Meteor.user().profile.notifyShores.north = true;
+    console.log('touched')
+    }
+  })
 
 
 
