@@ -43,6 +43,40 @@ Meteor.startup(function () {
         {fields: {profile:1}}).profile.notifyHeight[1] 
   }
 
+  Template.userSettings.northActive = function(){
+    if(Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.notifyShores.north === true){
+      return "active";
+    }
+  }
+  Template.userSettings.southActive = function(){
+    if(Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.notifyShores.south === true){
+      return "active";
+    }
+  }
+  Template.userSettings.eastActive = function(){
+    if(Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.notifyShores.east === true){
+      return "active";
+    }
+  }
+  Template.userSettings.westActive = function(){
+    if(Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.notifyShores.west === true){
+      return "active";
+    }
+  }
+
+
+
+
+
+
   //Events//
   //Sets profile.verified to true if the pin matches
   Template.userSettings.events({
@@ -176,7 +210,7 @@ Meteor.startup(function () {
             });
          }
       break;
-}      
+    }       
     }
   })
 
