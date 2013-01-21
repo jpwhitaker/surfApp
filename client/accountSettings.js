@@ -72,6 +72,30 @@ Meteor.startup(function () {
     }
   }
 
+  Template.userSettings.userHours = function(){
+    return _.range(1,13).map(function(n){
+      var hour = {number:n};
+      if(+Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.notifyTime.hours === n){
+        hour.selected = 'selected';
+      }
+      return hour;
+    })
+  }
+  Template.userSettings.userMins = function(){
+    return _.range(0,60,5).map(function(n){
+      
+      var min = {number:n};
+      if(+Meteor.users.findOne(
+        {_id:Meteor.userId()},
+        {fields: {profile:1}}).profile.notifyTime.minutes === n){
+        min.selected = 'selected';
+      }
+      if(n<10){min.number = "0"+n}
+      return min;
+    })
+  }
 
 
 
@@ -218,11 +242,20 @@ Meteor.startup(function () {
   Template.userSettings.events({
     'click .save': function () {
       //save notifyHeight
-     Meteor.users.update(
-      {_id:Meteor.userId()},
-      {$set: {"profile.notifyHeight" : 
-      [+document.querySelector('.minHeight').value,+document.querySelector('.maxHeight').value] }
-      });    
+      if(document.querySelector('.minHeight').value !== ''){
+        Meteor.users.update(
+          {_id:Meteor.userId()},
+          {$set: {"profile.notifyHeight.0" : 
+          +document.querySelector('.minHeight').value }
+        });
+      }
+      if(document.querySelector('.maxHeight').value !== ''){
+        Meteor.users.update(
+          {_id:Meteor.userId()},
+          {$set: {"profile.notifyHeight.1" : 
+          +document.querySelector('.maxHeight').value }
+        });
+      }
     //save notifyTime   
       Meteor.users.update(
         {_id:Meteor.userId()},
