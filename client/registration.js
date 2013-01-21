@@ -13,7 +13,7 @@ if (Meteor.isClient){
           'verified'     : false,
           'notifyHeight' : [3,5],
           'notifyShores' : {'north':false, 'south':false, 'east':false, 'west':false},
-          'notifyTime'   : 600,
+          'notifyTime'   : {'hours':6, 'minutes':00, 'amPm':'AM'},
           'notifyText'   : false,
           'notifyEmail'  : false,
           'email'        : '',

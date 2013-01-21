@@ -214,16 +214,27 @@ Meteor.startup(function () {
     }
   })
 
-
+  //save button for saving values that arent toggles
   Template.userSettings.events({
     'click .save': function () {
-       Meteor.users.update(
+      //save notifyHeight
+     Meteor.users.update(
+      {_id:Meteor.userId()},
+      {$set: {"profile.notifyHeight" : 
+      [+document.querySelector('.minHeight').value,+document.querySelector('.maxHeight').value] }
+      });    
+    //save notifyTime   
+      Meteor.users.update(
         {_id:Meteor.userId()},
-        {$set: {"profile.notifyHeight" : 
-        [+document.querySelector('.minHeight').value,+document.querySelector('.maxHeight').value] }
-        });       
-    }
+        {$set: {"profile.notifyTime" : {
+          'hours':document.querySelector('#hours').value,
+          'minutes':document.querySelector('#mins').value,
+          'amPm':document.querySelector('#amPm').value}
+        }
+      }); 
+    } 
   })
+
 
 });
 
