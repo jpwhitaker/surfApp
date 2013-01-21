@@ -99,37 +99,82 @@ Meteor.startup(function () {
     }
   })
 
+//Switch statement sending direction button clicks to DB //
   Template.userSettings.events({
     'click .dir': function (e) {
        console.log(e.target.id) 
        switch (e.target.id) {
    case "north":
-         Meteor.users.update(
-        {_id:Meteor.userId()},
-        {
-          $set: {"profile.notifyShores.north" : true}
-        });
+        if (Meteor.users.findOne(
+          {_id:Meteor.userId()},
+          {fields: {profile:1}}).profile.notifyShores.north === false) {
+           
+          Meteor.users.update(
+          {_id:Meteor.userId()},
+          {
+            $set: {"profile.notifyShores.north" : true}
+          });
+       } else {
+           Meteor.users.update(
+          {_id:Meteor.userId()},
+          {
+            $set: {"profile.notifyShores.north" : false}
+          });
+       }
       break;
    case "south":
-        Meteor.users.update(
-        {_id:Meteor.userId()},
-        {
-          $set: {"profile.notifyShores.south" : true}
-        });
+          if (Meteor.users.findOne(
+          {_id:Meteor.userId()},
+          {fields: {profile:1}}).profile.notifyShores.south === false) {
+           
+          Meteor.users.update(
+          {_id:Meteor.userId()},
+          {
+            $set: {"profile.notifyShores.south" : true}
+          });
+       } else {
+           Meteor.users.update(
+          {_id:Meteor.userId()},
+          {
+            $set: {"profile.notifyShores.south" : false}
+          });
+       }
       break;
    case "east":
-        Meteor.users.update(
-        {_id:Meteor.userId()},
-        {
-          $set: {"profile.notifyShores.east" : true}
-        });
+      if (Meteor.users.findOne(
+              {_id:Meteor.userId()},
+              {fields: {profile:1}}).profile.notifyShores.east === false) {
+               
+              Meteor.users.update(
+              {_id:Meteor.userId()},
+              {
+                $set: {"profile.notifyShores.east" : true}
+              });
+           } else {
+               Meteor.users.update(
+              {_id:Meteor.userId()},
+              {
+                $set: {"profile.notifyShores.east" : false}
+              });
+           }
       break;
    case "west":
-        Meteor.users.update(
-        {_id:Meteor.userId()},
-        {
-          $set: {"profile.notifyShores.west" : true}
-        });
+    if (Meteor.users.findOne(
+            {_id:Meteor.userId()},
+            {fields: {profile:1}}).profile.notifyShores.west === false) {
+             
+            Meteor.users.update(
+            {_id:Meteor.userId()},
+            {
+              $set: {"profile.notifyShores.west" : true}
+            });
+         } else {
+             Meteor.users.update(
+            {_id:Meteor.userId()},
+            {
+              $set: {"profile.notifyShores.west" : false}
+            });
+         }
       break;
 }      
     }
