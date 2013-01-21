@@ -8,10 +8,6 @@ Meteor.startup(function () {
     }
   }
  //Display functions//
-Template.map.north = function(){
-  console.log(northshore2)
-  return northshore2;
-}
 
   Template.userSettings.verified = function(){
     return Meteor.users.findOne(

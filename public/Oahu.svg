@@ -148,8 +148,8 @@
 			l-5.303-0.663L454.623,1709.089L454.623,1709.089z"/>
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 101.9849 1081.6626)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="35">North</text>
-<text transform="matrix(1 0 0 1 343.9849 1461.5278)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="35">South</text>
-<text transform="matrix(1 0 0 1 483.9849 1171.6626)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="35">East</text>
-<text transform="matrix(1 0 0 1 101.9849 1331.7661)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="35">West</text>
+<text transform="matrix(1 0 0 1 101.9849 1091.0298)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="25">North</text>
+<text transform="matrix(1 0 0 1 455.9849 1455.5278)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="25">South</text>
+<text transform="matrix(1 0 0 1 455.9849 1091.0298)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="25">East</text>
+<text transform="matrix(1 0 0 1 101.9849 1455.5278)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="25">West</text>
 </svg>
