@@ -3,18 +3,34 @@
 </head>
 
 <body>
-  {{#if currentUser}}
-    {{> userSettings}}
-  {{else}}
-    {{> signUp}}
-      "Sign Up!"  
-    {{/if}}
+  <div class="row">
+    
+      <div class = "span6 offset4 main">
+        {{#if currentUser}}
+          {{> userSettings}}
+        {{else}}
+          {{> signUp}}
+          {{/if}}
+      </div>
+
+  </div>
 </body>
 
 <template name="signUp">
-  <h1>Sign Up</h1>
+  <div class="row">
+    <div class="span6">
+      <h1>Sign Up</h1>
+          <div class="overlay">
+            {{> overlay}}
+          </div>
+          {{> map}}
+        
+    </div>
+  </div>
+  <p>
   <input type="text" id="phoneNumber" placeholder="(808) 555-5555"/>
   <input type="button" id="submit" value="Sign Up!" />
+  </p>
 </template>
 
 

@@ -1,0 +1,20 @@
+body {
+  background-color: #badada 
+}
+
+.main {
+  background-color: white;
+  border-radius: 10px;
+}
+
+#map {
+  margin-left: 40px;
+}
+
+.overlay {
+  width:570px;
+  height:462px;
+  border: 1px solid black;
+
+  position: absolute;
+}

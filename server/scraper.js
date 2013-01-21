@@ -1,3 +1,6 @@
+SurfHeights = new Meteor.Collection("surfheights");
+
+
 Meteor.methods({scrapeData:scrapeData})
 
 function scrapeData(abc) {
@@ -20,7 +23,7 @@ var grabDirections = _.filter(splitLines, function(line){
   || line.match(/(east)/g) == "east"
   || line.match(/(west)/g) == "west"
 }) 
-console.log(grabDirections)
+// console.log(grabDirections)
 
 var directionalWaveHeights = _.map(grabDirections, function(line){
 return {
@@ -34,5 +37,10 @@ return {
 
 }
 }) ;
-console.log(directionalWaveHeights)
+
+var northshore = directionalWaveHeights[0].shore[0];
+var northshore2 = directionalWaveHeights[0].heights[0]
+SurfHeights.insert({shore:northshore, heights:northshore2})
+console.log(northshore, northshore2)
+
 }
