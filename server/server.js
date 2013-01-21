@@ -39,3 +39,4 @@ if (Meteor.isServer) {
   console.log(Meteor.users.find().fetch())
   })
 }
+

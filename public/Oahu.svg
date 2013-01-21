@@ -150,6 +150,6 @@
 </g>
 <text transform="matrix(1 0 0 1 101.9849 1081.6626)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="35">North</text>
 <text transform="matrix(1 0 0 1 343.9849 1461.5278)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="35">South</text>
-<text transform="matrix(1 0 0 1 483.9849 1081.6626)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="35">East</text>
+<text transform="matrix(1 0 0 1 483.9849 1171.6626)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="35">East</text>
 <text transform="matrix(1 0 0 1 101.9849 1331.7661)" fill="#FFFFFF" font-family="'Helvetica-Bold'" font-size="35">West</text>
 </svg>
