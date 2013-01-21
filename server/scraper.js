@@ -11,6 +11,28 @@ setInterval(scrapeData(),3600000);
 
 
 function parseData(xml) {
-var surf = xml.match((/\d{1,2}( to )\d{1,2}/g))
-  console.log(surf)
+// var surf = xml.match((/\d{1,2}( to )\d{1,2}/g))
+// var surf2 = xml.match(/((NORTH)|(SOUTH)|(EAST)|(WEST))/g)
+var splitLines = xml.split(/\r\n|\r|\n/)
+var grabDirections = _.filter(splitLines, function(line){ 
+  return line.match(/(north)/g) == "north" 
+  || line.match(/(south)/g) == "south"
+  || line.match(/(east)/g) == "east"
+  || line.match(/(west)/g) == "west"
+}) 
+console.log(grabDirections)
+
+var directionalWaveHeights = _.map(grabDirections, function(line){
+return {
+  shore:
+  line.match(/(north)/g) 
+  || line.match(/(south)/g)
+  || line.match(/(east)/g)
+  || line.match(/(west)/g), 
+  heights:
+  line.match((/\d{1,2}( to )\d{1,2}/g))
+
+}
+}) ;
+console.log(directionalWaveHeights)
 }
