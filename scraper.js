@@ -23,30 +23,49 @@ SurfHeights = new Meteor.Collection("surfheights");
     || line.match(/(east)/g) == "east"
     || line.match(/(west)/g) == "west"
   }) 
-  // console.log(grabDirections)
+  console.log(grabDirections)
 
-  var directionalWaveHeights = _.map(grabDirections, function(line){
-  return {
-    shore:
+  var dirWaveHeight = _.map(grabDirections, function(line){
+  return [
     line.match(/(north)/g) 
     || line.match(/(south)/g)
     || line.match(/(east)/g)
-    || line.match(/(west)/g), 
-    heights:
+    || line.match(/(west)/g),
     line.match((/\d{1,2}( to )\d{1,2}/g))
+    || line.match(/\d{1,2}( feet or )/g)
+    ] 
+});
 
-  }
-  }) ;
+  // console.log(dirWaveHeight)
+
+  var dirWaveHeightValues = _.map(dirWaveHeight, function(array){
+    var heights = _.map(array[1], function(heights){
+      var numHeights = heights.match(/\d{1,2}/g)
+      var toNum = _.map(numHeights, function(nums){
+        return +nums
+      })
+      // console.log(toNum)
+     
+      return toNum
+    })
+    // console.log(heights)
+    return [array[0], heights]
+  })
+  
+  console.log(dirWaveHeightValues[0])
 
   var dir1 = {createdAt:Date.now()}
   var dir2 = {createdAt:Date.now()}
   var dir3 = {createdAt:Date.now()}
   var dir4 = {createdAt:Date.now()}
-  dir1[directionalWaveHeights[0].shore[0]] = directionalWaveHeights[0].heights[0];
-  dir2[directionalWaveHeights[1].shore[0]] = directionalWaveHeights[0].heights[1];
-  dir3[directionalWaveHeights[2].shore[0]] = directionalWaveHeights[0].heights[2];
-  dir4[directionalWaveHeights[3].shore[0]] = directionalWaveHeights[0].heights[3];
 
+  dir1[dirWaveHeightValues[0][0]] = dirWaveHeightValues[0][1][0];
+  dir2[dirWaveHeightValues[1][0]] = dirWaveHeightValues[1][1][0];
+  dir3[dirWaveHeightValues[2][0]] = dirWaveHeightValues[2][1][0];
+  dir4[dirWaveHeightValues[3][0]] = dirWaveHeightValues[3][1][0];
+
+
+  // console.log(dir1, dir2, dir3, dir4)
   SurfHeights.insert(dir1);
   SurfHeights.insert(dir2);
   SurfHeights.insert(dir3);
@@ -55,7 +74,7 @@ SurfHeights = new Meteor.Collection("surfheights");
 
 
 
-  console.log( dir1, dir2, dir3, dir4)
+  // console.log( dir1, dir2, dir3, dir4)
 
   }
 }
