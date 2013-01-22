@@ -98,6 +98,13 @@ Meteor.startup(function () {
     })
   }
 
+  //some meteor magic going on here
+  Template.userSettings.showTime = function(){
+    Session.get('time')
+    return moment.utc().subtract('hours',10).format('h:mm:ss a')
+  }
+  Meteor.setInterval(function(){Session.set('time',Math.random())},1000)
+
 
 
 
