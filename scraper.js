@@ -18,12 +18,11 @@ SurfHeights = new Meteor.Collection("surfheights");
   // var surf2 = xml.match(/((NORTH)|(SOUTH)|(EAST)|(WEST))/g)
   var splitLines = xml.split(/\r\n|\r|\n/)
   var grabDirections = _.filter(splitLines, function(line){ 
-    return line.match(/(north)/g) == "north" 
-    || line.match(/(south)/g) == "south"
-    || line.match(/(east)/g) == "east"
-    || line.match(/(west)/g) == "west"
+    return line.match(/(along north)/g) == "along north" 
+    || line.match(/(along south)/g) == "along south"
+    || line.match(/(along east)/g) == "along east"
+    || line.match(/(along west)/g) == "along west"
   }) 
-  console.log(grabDirections, 'lol')
 
   var dirWaveHeight = _.map(grabDirections, function(line){
   return [
@@ -36,7 +35,6 @@ SurfHeights = new Meteor.Collection("surfheights");
     ] 
 });
 
-  console.log(dirWaveHeight, 'fuck')
 
   var dirWaveHeightValues = _.map(dirWaveHeight, function(array){
     var heights = _.map(array[1], function(heights){
@@ -52,8 +50,6 @@ SurfHeights = new Meteor.Collection("surfheights");
     return [array[0], heights]
   })
   
-  console.log(dirWaveHeightValues[0],'hi')
-  console.log('hey', dirWaveHeightValues[1][1][0],dirWaveHeightValues[1][1][0],dirWaveHeightValues[2][1][0],dirWaveHeightValues[3][1][0])
 
   var dir1 = {createdAt:Date.now()}
   var dir2 = {createdAt:Date.now()}
@@ -66,7 +62,6 @@ SurfHeights = new Meteor.Collection("surfheights");
   dir4[dirWaveHeightValues[3][0]] = dirWaveHeightValues[3][1][0];
 
 
-  // console.log(dir1, dir2, dir3, dir4)
   SurfHeights.insert(dir1);
   SurfHeights.insert(dir2);
   SurfHeights.insert(dir3);
@@ -75,7 +70,6 @@ SurfHeights = new Meteor.Collection("surfheights");
 
 
 
-  // console.log( dir1, dir2, dir3, dir4)
 
   }
 }
