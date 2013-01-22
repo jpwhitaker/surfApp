@@ -12,14 +12,14 @@ var checkUser = function(){
     user.profile.notifyTime.hours = currentHour;
     user.profile.notifyTime.minutes = currentMinute;
     if(+user.profile.notifyTime.hours == currentHour && +user.profile.notifyTime.minutes == currentMinute){
-      console.log('Match', user)
+      // console.log('Match', user)
       return user;
     } else {
       console.log ('no match')
     }
   })
   //returns the height data for the shores the user wants
-  var matchingSettings = _.map(matchingTimes, function(user){
+  var activeShores = _.map(matchingTimes, function(user){
     var northHeight = [];
     var southHeight = [];
     var eastHeight = [];
@@ -49,8 +49,15 @@ var checkUser = function(){
     returnArray = [northHeight,southHeight,eastHeight,westHeight]
      return returnArray
   })
-
-  console.log(matchingSettings, "sexy")
+  
+  var heightRange = _.map(activeShores, function(direction){
+    _.map(direction, function(heights){
+      _.filter(heights, function(oneHeight){
+        // console.log(oneHeight)
+      })
+    })
+    return matchingTimes;
+  })
 
 
 

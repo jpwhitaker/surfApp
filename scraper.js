@@ -4,7 +4,7 @@ SurfHeights = new Meteor.Collection("surfheights");
   Meteor.methods({scrapeData:scrapeData})
 
   function scrapeData(abc) {
-    Meteor.http.call("GET", 'http://www.prh.noaa.gov/hnl/xml/Surf.xml', function (err,res){
+    Meteor.http.call("GET", 'http://localhost:3000/srfdta.html', function (err,res){
       parseData(res.content)
 
     });
@@ -23,7 +23,7 @@ SurfHeights = new Meteor.Collection("surfheights");
     || line.match(/(east)/g) == "east"
     || line.match(/(west)/g) == "west"
   }) 
-  console.log(grabDirections)
+  console.log(grabDirections, 'lol')
 
   var dirWaveHeight = _.map(grabDirections, function(line){
   return [
@@ -36,7 +36,7 @@ SurfHeights = new Meteor.Collection("surfheights");
     ] 
 });
 
-  // console.log(dirWaveHeight)
+  console.log(dirWaveHeight, 'fuck')
 
   var dirWaveHeightValues = _.map(dirWaveHeight, function(array){
     var heights = _.map(array[1], function(heights){
@@ -52,7 +52,8 @@ SurfHeights = new Meteor.Collection("surfheights");
     return [array[0], heights]
   })
   
-  console.log(dirWaveHeightValues[0])
+  console.log(dirWaveHeightValues[0],'hi')
+  console.log('hey', dirWaveHeightValues[1][1][0],dirWaveHeightValues[1][1][0],dirWaveHeightValues[2][1][0],dirWaveHeightValues[3][1][0])
 
   var dir1 = {createdAt:Date.now()}
   var dir2 = {createdAt:Date.now()}
