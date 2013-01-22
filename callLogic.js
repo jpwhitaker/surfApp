@@ -3,15 +3,28 @@ Meteor.setInterval(function(){console.log('hey')}
 
 var checkUser = function(){
   var currentHour = moment.utc().subtract('hours',10).format('h')
+  var currentMinute = moment.utc().subtract('hours',10).format('m')
+
   var allUsers = Meteor.users.find().fetch()
 
+  //check if time matches
   _.each(allUsers, function(user){
-    if(user.profile.notifyTime.hours == currentHour){
-      console.log('hours match')
+    
+    //match hours
+    if(+user.profile.notifyTime.hours == currentHour){
+      console.log('hours match', +user.profile.notifyTime.hours, currentHour)
     } else {
-      console.log('hours dont match')
+      console.log('hours dont match', +user.profile.notifyTime.hours, currentHour)
     }
-    console.log(user.profile.notifyTime.hours, currentHour)})
+
+    //match mins
+    if(+user.profile.notifyTime.minutes == currentMinute){
+      console.log('mins match', +user.profile.notifyTime.minutes, currentMinute)
+    } else {
+      console.log('mins dont match', +user.profile.notifyTime.minutes, currentMinute)
+    }
+
+  })
 }
 
 //call to send text
