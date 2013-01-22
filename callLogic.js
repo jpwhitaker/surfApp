@@ -9,6 +9,8 @@ var checkUser = function(){
 
   //check if time matches
   var matchingTimes = _.filter(allUsers, function(user){
+    user.profile.notifyTime.hours = currentHour;
+    user.profile.notifyTime.minutes = currentMinute;
     if(+user.profile.notifyTime.hours == currentHour && +user.profile.notifyTime.minutes == currentMinute){
       console.log('Match', user)
       return user;
@@ -16,7 +18,40 @@ var checkUser = function(){
       console.log ('no match')
     }
   })
-  
+  //returns the height data for the shores the user wants
+  var matchingSettings = _.map(matchingTimes, function(user){
+    var northHeight = [];
+    var southHeight = [];
+    var eastHeight = [];
+    var westHeight = [];
+    var returnArray = [];
+    if(user.profile.notifyShores.north === true){
+      var north = SurfHeights.findOne({north:{$exists:true}}, {sort:{createdAt:1}});
+      northHeight = north.north
+      returnArray.push(north.north);
+      // console.log(north.north)
+    }
+    if(user.profile.notifyShores.south === true){
+      var south = SurfHeights.findOne({south:{$exists:true}}, {sort:{createdAt:1}});
+      southHeight = south.south
+      returnArray[1] = south.south;
+    }
+    if(user.profile.notifyShores.east === true){
+      var east = SurfHeights.findOne({east:{$exists:true}}, {sort:{createdAt:1}});
+      eastHeight = east.east
+      returnArray[2] = east.east;
+    }
+    if(user.profile.notifyShores.west === true){
+      var west = SurfHeights.findOne({west:{$exists:true}}, {sort:{createdAt:1}});
+      westHeight = west.west
+      returnArray[3] = west.west;
+    }
+    returnArray = [northHeight,southHeight,eastHeight,westHeight]
+     return returnArray
+  })
+
+  console.log(matchingSettings, "sexy")
+
 
 
 
