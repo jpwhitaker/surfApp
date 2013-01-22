@@ -8,23 +8,22 @@ var checkUser = function(){
   var allUsers = Meteor.users.find().fetch()
 
   //check if time matches
-  _.each(allUsers, function(user){
-    
-    //match hours
-    if(+user.profile.notifyTime.hours == currentHour){
-      console.log('hours match', +user.profile.notifyTime.hours, currentHour)
+  var matchingTimes = _.filter(allUsers, function(user){
+    if(+user.profile.notifyTime.hours == currentHour && +user.profile.notifyTime.minutes == currentMinute){
+      console.log('Match', user)
+      return user;
     } else {
-      console.log('hours dont match', +user.profile.notifyTime.hours, currentHour)
+      console.log ('no match')
     }
-
-    //match mins
-    if(+user.profile.notifyTime.minutes == currentMinute){
-      console.log('mins match', +user.profile.notifyTime.minutes, currentMinute)
-    } else {
-      console.log('mins dont match', +user.profile.notifyTime.minutes, currentMinute)
-    }
-
   })
+  
+
+
+
+
+
+
+
 }
 
 //call to send text
