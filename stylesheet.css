@@ -1,6 +1,6 @@
 body {
-  background-color: #badada;
-  padding: 10px
+  background-color: #0099bb;
+  padding: 10px;
 }
 .tsunani {
   font-family: 'Lobster', cursive;
@@ -11,9 +11,18 @@ body {
   border-radius: 10px;
   padding:10px;
 }
+.logIn {
+    margin-top: 15px;
+
+}
+.logOut {
+  margin-top: 10px;
+  margin-right: 5px;
+}
 
 #map {
   margin-left: 40px;
+  color: #333;
 }
 
 .overlay {

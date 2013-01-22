@@ -10,7 +10,7 @@ if (Meteor.isClient){
       var verifyPin = Math.floor(Math.random()*9000)+1000;
         Accounts.createUser({
         'username':phoneNumber,
-        'password':phoneNumber,
+        'password':verifyPin,
         'profile' : {
           'verifyPin'    : verifyPin,
           'verified'     : false,
