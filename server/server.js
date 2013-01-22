@@ -43,7 +43,7 @@ if (Meteor.isServer) {
         }
       );
     }
-})
+    })
 
 
 
