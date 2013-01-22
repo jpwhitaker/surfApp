@@ -4,7 +4,7 @@ SurfHeights = new Meteor.Collection("surfheights");
   Meteor.methods({scrapeData:scrapeData})
 
   function scrapeData(abc) {
-    Meteor.http.call("GET", 'http://localhost:3000/srfdta.html', function (err,res){
+    Meteor.http.call("GET", 'http://www.prh.noaa.gov/hnl/pages/SRF.php', function (err,res){
       parseData(res.content)
 
     });
@@ -16,13 +16,14 @@ SurfHeights = new Meteor.Collection("surfheights");
   function parseData(xml) {
   // var surf = xml.match((/\d{1,2}( to )\d{1,2}/g))
   // var surf2 = xml.match(/((NORTH)|(SOUTH)|(EAST)|(WEST))/g)
-  var splitLines = xml.split(/\r\n|\r|\n/)
+  var splitLines = xml.split(/(<p>)/g)
   var grabDirections = _.filter(splitLines, function(line){ 
     return line.match(/(along north)/g) == "along north" 
     || line.match(/(along south)/g) == "along south"
     || line.match(/(along east)/g) == "along east"
     || line.match(/(along west)/g) == "along west"
   }) 
+  console.log(grabDirections,"GRABBING")
 
   var dirWaveHeight = _.map(grabDirections, function(line){
   return [
@@ -31,10 +32,10 @@ SurfHeights = new Meteor.Collection("surfheights");
     || line.match(/(east)/g)
     || line.match(/(west)/g),
     line.match((/\d{1,2}( to )\d{1,2}/g))
-    || line.match(/\d{1,2}( feet or )/g)
+    || line.match(/\d{1,2}( feet through )/g)
     ] 
 });
-
+  console.log(dirWaveHeight,"DIR")
 
   var dirWaveHeightValues = _.map(dirWaveHeight, function(array){
     var heights = _.map(array[1], function(heights){
@@ -42,11 +43,11 @@ SurfHeights = new Meteor.Collection("surfheights");
       var toNum = _.map(numHeights, function(nums){
         return +nums
       })
-      // console.log(toNum)
+      console.log(toNum)
      
       return toNum
     })
-    // console.log(heights)
+    console.log(heights)
     return [array[0], heights]
   })
   
