@@ -6,57 +6,82 @@
   <strong>Verified:</strong> {{verified}}
   </div></p>
 
-  <p><form class="form-inline">Enter your pin: <input class="input-mini" id="pin" type="text" placeholder="xxxx">
-    <button type="button" class="btn btn-success verifyButton">Verify your number</button></form></p>
+  <form class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label" for="pin">Enter your pin:</label>
+      <div class="controls">
+        <input class="input-mini" id="pin" type="text" placeholder="xxxx">
+        <button type="button" class="btn btn-success verifyButton">Verify your number</button>
+      </div>
+    </div>
 
-  <p><form class="form-inline">Notify by text: <div class="btn-group" data-toggle="buttons-radio">
-    <button type="button" class="btn btn-primary notifyTextTrue {{notifyTextTrue}}">On</button>
-    <button type="button" class="btn btn-primary notifyTextFalse {{notifyTextFalse}}">Off</button>
-  </div></form></p>
+    <div class="control-group">
+      <label class="control-label" for="btn-group">Notify by text:</label>
+      <div class="controls">
+        <div class="btn-group" data-toggle="buttons-radio">
+        <button type="button" class="btn btn-primary notifyTextTrue {{notifyTextTrue}}">On</button>
+        <button type="button" class="btn btn-primary notifyTextFalse {{notifyTextFalse}}">Off</button>
+        </div>
+      </div>
+    </div>
 
-  <p><form class="form-inline">Notify by height: <div class="input-append">
+    <div class="control-group">
+      <label class="control-label" for="input-append">Notify by height:</label>
+      <div class="controls">
+        <div class="input-append">
     <!-- Odd bug where minHeight gets value from maxHeight, fixed with empty string in minHeight-->
-  <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}" value="" type="text">
-  <span class="add-on">ft</span>
-</div> to <div class="input-append">
-  <input class="input-mini maxHeight" id="appendedInput" placeholder="{{maxHeight}}"  type="text">
-  <span class="add-on">ft</span>
-</div></form></p>
+          <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}" value="" type="text">
+          <span class="add-on">ft</span>
+          </div> to <div class="input-append">
+          <input class="input-mini maxHeight" id="appendedInput" placeholder="{{maxHeight}}"  type="text">
+          <span class="add-on">ft</span>
+        </div>
+      </div>
+    </div>
 
-  <p><form class="form-inline">Notify shores: <div class="btn-group" data-toggle="buttons-checkbox">
-    <button type="button" id="north" class="btn btn-primary dir {{northActive}}">North</button>
-    <button type="button" id="south" class="btn btn-primary dir {{southActive}}">South</button>
-    <button type="button" id="east" class="btn btn-primary dir {{eastActive}}">East</button>
-    <button type="button" id="west" class="btn btn-primary dir {{westActive}}">West</button>
-  </div></form></p>
+    <div class="control-group">
+      <label class="control-label" for="btn-group">Notify for shores:</label>
+      <div class="controls">
+        <div class="btn-group" data-toggle="buttons-checkbox">
+          <button type="button" id="north" class="btn btn-primary dir {{northActive}}">North</button>
+          <button type="button" id="south" class="btn btn-primary dir {{southActive}}">South</button>
+          <button type="button" id="east" class="btn btn-primary dir {{eastActive}}">East</button>
+          <button type="button" id="west" class="btn btn-primary dir {{westActive}}">West</button>
+        </div>
+      </div>
+    </div>
 
-  <p><form class="form-inline">Notify time: 
-  <select class="input-mini" id="hours" >
-    {{#each userHours}}
-      <option {{selected}}>{{number}}</option>
-    {{/each}}
-    
-  </select> : 
-  <select class="input-mini" id="mins">
-    {{#each userMins}}
-    <option {{selected}}>{{number}}</option>
-    {{/each}}
-  </select>
-    <select class="input-mini" id="amPm">
-    <option {{selected}}>AM</option>
-    <option {{selected}}>PM</option>
-  </select>
- (Hawaiian time)
+    <div class="control-group">
+      <label class="control-label" for="hours">Send text at:</label>
+      <div class="controls">
+        <select class="input-mini" id="hours" >
+          {{#each userHours}}
+          <option {{selected}}>{{number}}</option>
+          {{/each}}
+        </select> : 
+        <select class="input-mini" id="mins">
+          {{#each userMins}}
+          <option {{selected}}>{{number}}</option>
+          {{/each}}
+        </select>
+        <select class="input-mini" id="amPm">
+          <option {{selected}}>AM</option>
+          <option {{selected}}>PM</option>
+        </select>
+        <span class="label label-info">Hawaiian Time</span>
 
-</form></p>
+      </div>
+    </div>
 
-<p><button type="button" class="btn btn-success save">Save Changes</button></p>
+    <div class="control-group">
+      <label class="control-label" for="pin">Surfs Up!</label>
+      <div class="controls">
+        <button type="button" class="btn btn-success save">Save Changes</button>
+      </div>
+    </div>
 
 
-  <p><div class="btn-group" data-toggle="buttons-radio">
-    <button type="button" class="btn btn-primary verifiedTrue">Verified</button>
-    <button type="button" class="btn btn-primary verifiedFalse">Unverified</button>
-  </div></p>
+
 
 
 
