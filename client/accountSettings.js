@@ -1,74 +1,76 @@
 Meteor.startup(function () {
+ 
   Template.userSettings.profile = function(){  
     if(! Meteor.loggingIn()){
       //necessary to load template before getting user data.  ask CJ about ui-bootstrap
       // console.log(Meteor.user().profile.notifyShores.north)
       //toggle directions
-      
     }
   }
- //Display functions//
-
+ 
+  //Display functions//
   Template.userSettings.verified = function(){
     return Meteor.users.findOne(
-        {_id:Meteor.userId()},
-        {fields: {profile:1}}).profile.verified
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.verified
   }
 
   Template.userSettings.notifyTextTrue = function(){
     if(Meteor.users.findOne(
-        {_id:Meteor.userId()},
-        {fields: {profile:1}}).profile.notifyText === true){
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyText === true){
       return "active";
     }
   }
 
   Template.userSettings.notifyTextFalse = function(){
     if(Meteor.users.findOne(
-        {_id:Meteor.userId()},
-        {fields: {profile:1}}).profile.notifyText === false){
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyText === false){
       return "active";
     }
   }
 
   Template.userSettings.minHeight = function(){
     return Meteor.users.findOne(
-        {_id:Meteor.userId()},
-        {fields: {profile:1}}).profile.notifyHeight[0] 
-    
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyHeight[0]   
   }
 
   Template.userSettings.maxHeight = function(){
     return Meteor.users.findOne(
-        {_id:Meteor.userId()},
-        {fields: {profile:1}}).profile.notifyHeight[1] 
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyHeight[1] 
   }
 
   Template.userSettings.northActive = function(){
     if(Meteor.users.findOne(
-        {_id:Meteor.userId()},
-        {fields: {profile:1}}).profile.notifyShores.north === true){
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyShores.north === true){
       return "active";
     }
   }
+
   Template.userSettings.southActive = function(){
     if(Meteor.users.findOne(
-        {_id:Meteor.userId()},
-        {fields: {profile:1}}).profile.notifyShores.south === true){
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyShores.south === true){
       return "active";
     }
   }
+
   Template.userSettings.eastActive = function(){
     if(Meteor.users.findOne(
-        {_id:Meteor.userId()},
-        {fields: {profile:1}}).profile.notifyShores.east === true){
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyShores.east === true){
       return "active";
     }
   }
+
   Template.userSettings.westActive = function(){
     if(Meteor.users.findOne(
-        {_id:Meteor.userId()},
-        {fields: {profile:1}}).profile.notifyShores.west === true){
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyShores.west === true){
       return "active";
     }
   }
@@ -84,16 +86,16 @@ Meteor.startup(function () {
       return hour;
     })
   }
+
   Template.userSettings.userMins = function(){
-    return _.range(0,60,5).map(function(n){
-      
+    return _.range(0,60,5).map(function(n){    
       var min = {number:n};
-      if(+Meteor.users.findOne(
-        {_id:Meteor.userId()},
-        {fields: {profile:1}}).profile.notifyTime.minutes === n){
-        min.selected = 'selected';
-      }
-      if(n<10){min.number = "0"+n}
+        if(+Meteor.users.findOne(
+          {_id:Meteor.userId()},
+          {fields: {profile:1}}).profile.notifyTime.minutes === n){
+          min.selected = 'selected';
+        }
+        if(n<10){min.number = "0"+n}
       return min;
     })
   }
@@ -105,24 +107,17 @@ Meteor.startup(function () {
   }
   Meteor.setInterval(function(){Session.set('time',Math.random())},1000)
 
-
-
-
-
   //Events//
   //Sets profile.verified to true if the pin matches
   Template.userSettings.events({
-  'click .verifyButton' : function() {
-    if(Meteor.users.findOne({_id:Meteor.userId()},{fields: {profile:1}}).profile.verifyPin 
-      === +document.getElementById('pin').value)
-      {
+    'click .verifyButton' : function() {
+      if (Meteor.users.findOne({_id:Meteor.userId()},{fields: {profile:1}}).profile.verifyPin 
+      === +document.getElementById('pin').value){
         Meteor.users.update(
         {_id:Meteor.userId()},
-        {$set: {"profile.verified" : true}
-        });
-      console.log('yes')
-    } 
-    else {console.log('no')}}
+        {$set: {"profile.verified" : true}});
+      }
+    }   
   });
 
   Template.userSettings.events({
@@ -130,42 +125,42 @@ Meteor.startup(function () {
       Meteor.users.update(
         {_id:Meteor.userId()},
         {$set: {"profile.notifyText" : true}
-        })
+      })
     }
   })
 
-    Template.userSettings.events({
+  Template.userSettings.events({
     'click .notifyTextFalse' : function() {
       Meteor.users.update(
         {_id:Meteor.userId()},
         {$set: {"profile.notifyText" : false}
-        })
+      })
     }
   })
  
   Template.userSettings.events({
-  'click .verifiedTrue' : function () {
+    'click .verifiedTrue' : function () {
       console.log ('clicked true')
       Meteor.users.update(
         {_id:Meteor.userId()},
         {
-          $set: {"profile.verified" : true}
-        });
+        $set: {"profile.verified" : true}
+      });
     }
   })
 
   Template.userSettings.events({
-  'click .verifiedFalse' : function () {
+    'click .verifiedFalse' : function () {
       console.log ('clicked false')
         Meteor.users.update(
         {_id:Meteor.userId()},
         {
-          $set: {"profile.verified" : false}
-        });
+        $set: {"profile.verified" : false}
+      });
     }
   })
 
-//Switch statement sending direction button clicks to DB //
+  //Switch statement sending direction button clicks to DB //
   Template.userSettings.events({
     'click .dir': function (e) {
        console.log(e.target.id) 
@@ -275,10 +270,4 @@ Meteor.startup(function () {
       }); 
     } 
   })
-
-
 });
-
-
-
-

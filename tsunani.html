@@ -9,7 +9,7 @@
 
   </div>
   <div class="row">
-      <div class = "span6 offset5 main">
+      <div class = "span6 offset4 main">
          <div class="row">
           <div class="span2 logo">
             <h1 class="tsunani">Tsunani</h1>
@@ -35,16 +35,21 @@
 
 <template name="signUp">
   <div class="row">
-  <div class="span6">
+  <div class="span4">
 
           {{> map}}
         
     </div>
   </div>
-  <div class="pull-right"><form class="form-inline">
-  <strong>Get free text alerts when the surf is up!</strong> <input type="text" id="phoneNumber" placeholder="(808) 555-5555"/>
-  <input type="button" id="submit" value="Sign Up!" />
-</form>
+
+  <div class="row">
+    <div class="span6">
+      <div class="pull-right"><form class="form-inline">
+        <strong>Get free text alerts when the surf is up!</strong> <input type="text" id="phoneNumber" placeholder="(808) 555-5555"/>
+        <button type="button" class="btn btn-success" id="submit">Sign Up!</button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
