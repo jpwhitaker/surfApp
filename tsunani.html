@@ -24,7 +24,7 @@
        </div>   
 
         {{#if currentUser}}
-          {{> userSettings}}
+          {{> adminPage}} <!-- change back to userSettings -->
         {{else}}
           {{> signUp}}
           {{/if}}
@@ -35,11 +35,12 @@
 
 <template name="signUp">
   <div class="row">
-  <div class="span4">
-
-          {{> map}}
-        
+  <div class="span3">
+    {{> map}}     
     </div>
+  <div class="span3">
+    {{> heightTable}}
+  </div>  
   </div>
 
   <div class="row">

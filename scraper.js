@@ -1,3 +1,5 @@
+unconfirmedSurfHeights = new Meteor.Collection("unconfirmedsurfheights");
+
 SurfHeights = new Meteor.Collection("surfheights");
 
 if (Meteor.isServer) {

@@ -2,6 +2,10 @@ body {
   background-color: #0099bb;
   padding: 10px;
 }
+.surfTable {
+  margin-top:15%;
+}
+
 .tsunani {
   font-family: 'Lobster', cursive;
 }

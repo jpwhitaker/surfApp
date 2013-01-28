@@ -1,0 +1,75 @@
+<template name="adminPage">
+  <h1>{{currentUser.username}} ADMIN</h1>
+
+  <p><div class="alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>WARNING:</strong> Data entered here will be sent to users.{{verified}}
+  </div></p>
+
+  <form class="form-horizontal">
+
+    <div class="control-group">
+      <label class="control-label" for="input-append">North Shore:</label>
+      <div class="controls">
+        <div class="input-append">
+    <!-- Odd bug where minHeight gets value from maxHeight, fixed with empty string in minHeight-->
+          <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}" value="{{northMin}}" type="text">
+          <span class="add-on">ft</span>
+          </div> to <div class="input-append">
+          <input class="input-mini maxHeight" id="appendedInput" placeholder="{{maxHeight}}" value="{{northMax}}" type="text">
+          <span class="add-on">ft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input-append">South Shore:</label>
+      <div class="controls">
+        <div class="input-append">
+    <!-- Odd bug where minHeight gets value from maxHeight, fixed with empty string in minHeight-->
+          <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}" value="{{southMin}}" type="text">
+          <span class="add-on">ft</span>
+          </div> to <div class="input-append">
+          <input class="input-mini maxHeight" id="appendedInput" placeholder="{{maxHeight}}" value="{{southMax}}"  type="text">
+          <span class="add-on">ft</span>
+        </div>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input-append">East Shore:</label>
+      <div class="controls">
+        <div class="input-append">
+    <!-- Odd bug where minHeight gets value from maxHeight, fixed with empty string in minHeight-->
+          <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}" value="{{eastMin}}" type="text">
+          <span class="add-on">ft</span>
+          </div> to <div class="input-append">
+          <input class="input-mini maxHeight" id="appendedInput" placeholder="{{maxHeight}}" value="{{eastMax}}"  type="text">
+          <span class="add-on">ft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input-append">West Shore:</label>
+      <div class="controls">
+        <div class="input-append">
+    <!-- Odd bug where minHeight gets value from maxHeight, fixed with empty string in minHeight-->
+          <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}"  value="{{westMin}}" type="text">
+          <span class="add-on">ft</span>
+          </div> to <div class="input-append">
+          <input class="input-mini maxHeight" id="appendedInput" placeholder="{{maxHeight}}"value="{{westMax}}"  type="text">
+          <span class="add-on">ft</span>
+        </div>
+      </div>
+    </div>
+
+   
+
+    <div class="control-group">
+      <label class="control-label" for="pin">Send to users:</label>
+      <div class="controls">
+        <button type="button" class="btn btn-success save">CONFIRM DATA</button>
+      </div>
+    </div>
+  {{profile}}
+</template>
