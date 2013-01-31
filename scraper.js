@@ -21,7 +21,8 @@ if (Meteor.isServer) {
       || line.match(/(along east)/g) == "along east"
       || line.match(/(along west)/g) == "along west"
 
-    }) 
+    })
+
 
     var dirWaveHeight = _.map(grabDirections, function(line){
       return [
@@ -34,9 +35,6 @@ if (Meteor.isServer) {
       ] 
     });
 
-      
-
-    
     var dirWaveHeightValues = _.map(dirWaveHeight, function(array){
       var heights = _.map(array[1], function(heights){
         var numHeights = heights.match(/\d{1,2}/g)
@@ -48,21 +46,45 @@ if (Meteor.isServer) {
       return [array[0], heights]
     })
     
-    var dir1 = {createdAt:Date.now()}
-    var dir2 = {createdAt:Date.now()}
-    var dir3 = {createdAt:Date.now()}
-    var dir4 = {createdAt:Date.now()}
+    console.log(grabDirections);
+    console.log(dirWaveHeightValues)
+    console.log("------",dirWaveHeightValues[0][1][0],dirWaveHeightValues[0][1][0][0])
+    var unconfirmedData = {
+      today: {},
+      tomorrow: {},
+      todaySorted: function(){
+        var that = this
+        _.each(dirWaveHeightValues,function(value, index, arry){
+          that.today[arry[index][0]] = {min:arry[index][1][0][0], max:arry[index][1][0][1]}
+        })
+      },
+      tomorrowSorted: function(){
+        var that = this
+        _.each(dirWaveHeightValues,function(value, index, arry){
+            if(arry[index][1][1]){
+          that.tomorrow[arry[index][0]] = {tomorrowMin:arry[index][1][1][0], tomorrowMax:arry[index][1][1][1]}
+          } else {
+            that.tomorrow[arry[index][0]] = {tomorrowMin:arry[index][1][0][0], tomorrowMax:arry[index][1][0][1]}
 
-    dir1[dirWaveHeightValues[0][0]] = dirWaveHeightValues[0][1][0];
-    dir2[dirWaveHeightValues[1][0]] = dirWaveHeightValues[1][1][0];
-    dir3[dirWaveHeightValues[2][0]] = dirWaveHeightValues[2][1][0];
-    dir4[dirWaveHeightValues[3][0]] = dirWaveHeightValues[3][1][0];
-      console.log(dir1)
+          }
 
-    SurfHeights.insert(dir1);
-    SurfHeights.insert(dir2);
-    SurfHeights.insert(dir3);
-    SurfHeights.insert(dir4);
+          
+        })
+        that.today.createdAt = Date.now();
+      }
+
+    }
+
+    unconfirmedData.todaySorted();
+    unconfirmedData.tomorrowSorted();
+    console.log("today!",unconfirmedData.today,'---------')
+    console.log(unconfirmedData.tomorrow)
+
+
+    SurfHeights.insert(unconfirmedData.today)
+    SurfHeights.insert(unconfirmedData.tomorrow)
+
+  
   }
 }
 
