@@ -19,39 +19,39 @@ var westHeight = SurfHeights.findOne({west:{$exists:true}}, {sort:{createdAt:-1}
 //Returns Today's Unconfirmed Minimum Heights
 Template.heightTable.northMin = function(){
 
-var northHeight = SurfHeights.findOne({north:{$exists:true}}, {sort:{createdAt:-1}})
+var northHeight = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:-1}})
     console.log(northHeight,"LOGGING")
 
   return northHeight && northHeight.north.min;
 }
 Template.heightTable.southMin = function(){
-var southHeight = SurfHeights.findOne({south:{$exists:true}}, {sort:{createdAt:-1}})
+var southHeight = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:-1}})
   return southHeight && southHeight.south.min;
 }
 Template.heightTable.eastMin = function(){
-var eastHeight = SurfHeights.findOne({east:{$exists:true}}, {sort:{createdAt:-1}})
+var eastHeight = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:-1}})
   return eastHeight && eastHeight.east.min;
 }
 Template.heightTable.westMin = function(){
-var westHeight = SurfHeights.findOne({west:{$exists:true}}, {sort:{createdAt:-1}})
+var westHeight = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:-1}})
   return westHeight && westHeight.west.min;
 }
 
 //Returns Today's Unconfirmed maximum Heights
 Template.heightTable.northMax = function(){
-var northHeight = SurfHeights.findOne({north:{$exists:true}}, {sort:{createdAt:1}})
+var northHeight = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:1}})
   
   return northHeight && northHeight.north.max;
 }
 Template.heightTable.southMax = function(){
-var southHeight = SurfHeights.findOne({south:{$exists:true}}, {sort:{createdAt:-1}})
+var southHeight = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:-1}})
   return southHeight && southHeight.south.max;
 }
 Template.heightTable.eastMax = function(){
-var eastHeight = SurfHeights.findOne({east:{$exists:true}}, {sort:{createdAt:-1}})
+var eastHeight = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:-1}})
   return eastHeight && eastHeight.east.max;
 }
 Template.heightTable.westMax = function(){
-var westHeight = SurfHeights.findOne({west:{$exists:true}}, {sort:{createdAt:-1}})
+var westHeight = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:-1}})
   return westHeight && westHeight.west.max;
 }

@@ -1,5 +1,3 @@
-unconfirmedSurfHeights = new Meteor.Collection("unconfirmedsurfheights");
-
 SurfHeights = new Meteor.Collection("surfheights");
 
 if (Meteor.isServer) {
@@ -62,15 +60,16 @@ if (Meteor.isServer) {
         var that = this
         _.each(dirWaveHeightValues,function(value, index, arry){
             if(arry[index][1][1]){
-          that.tomorrow[arry[index][0]] = {tomorrowMin:arry[index][1][1][0], tomorrowMax:arry[index][1][1][1]}
+          that.tomorrow[arry[index][0]] = {min:arry[index][1][1][0], max:arry[index][1][1][1]}
           } else {
-            that.tomorrow[arry[index][0]] = {tomorrowMin:arry[index][1][0][0], tomorrowMax:arry[index][1][0][1]}
+          that.tomorrow[arry[index][0]] = {min:arry[index][1][0][0], max:arry[index][1][0][1]}
 
           }
 
           
         })
-        that.today.createdAt = Date.now();
+        that.today.today = Date.now();
+        that.tomorrow.tomorrow = Date.now();
       }
 
     }
