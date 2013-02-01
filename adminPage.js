@@ -1,5 +1,5 @@
-Meteor.startup(function () {
 verifiedData = new Meteor.Collection("verifiedData");
+Meteor.startup(function () {
 
   if (Meteor.isClient){
     
