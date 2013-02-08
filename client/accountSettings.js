@@ -10,9 +10,11 @@ Meteor.startup(function () {
  
   //Display functions//
   Template.userSettings.verified = function(){
-    return Meteor.users.findOne(
+    if (Meteor.users.findOne(
       {_id:Meteor.userId()},
-      {fields: {profile:1}}).profile.verified
+      {fields: {profile:1}}).profile.verified === false){
+      return "Verify your account to receive updates!"
+    }
   }
 
   Template.userSettings.notifyTextTrue = function(){
@@ -27,6 +29,22 @@ Meteor.startup(function () {
     if(Meteor.users.findOne(
       {_id:Meteor.userId()},
       {fields: {profile:1}}).profile.notifyText === false){
+      return "active";
+    }
+  }
+
+  Template.userSettings.today = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.todayOrTomorrow === 'today'){
+      return "active";
+    }
+  }
+
+  Template.userSettings.tomorrow = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.todayOrTomorrow === 'tomorrow'){
       return "active";
     }
   }
@@ -74,6 +92,59 @@ Meteor.startup(function () {
       return "active";
     }
   }
+
+  //changing the state of the 'day of the week buttons'
+  Template.userSettings.monActive = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyDays.mon === true){
+      return "active";
+    }
+  }
+  Template.userSettings.tueActive = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyDays.tue === true){
+      return "active";
+    }
+  }
+  Template.userSettings.wedActive = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyDays.wed === true){
+      return "active";
+    }
+  }
+  Template.userSettings.thuActive = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyDays.thu === true){
+      return "active";
+    }
+  }
+  Template.userSettings.friActive = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyDays.fri === true){
+      return "active";
+    }
+  }
+  Template.userSettings.satActive = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyDays.sat === true){
+      return "active";
+    }
+  }
+  Template.userSettings.sunActive = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyDays.sun === true){
+      return "active";
+    }
+  }
+
+
 
   Template.userSettings.userHours = function(){
     return _.range(1,13).map(function(n){
@@ -137,6 +208,25 @@ Meteor.startup(function () {
       })
     }
   })
+
+  Template.userSettings.events({
+    'click .todaysHeights' : function() {
+      Meteor.users.update(
+        {_id:Meteor.userId()},
+        {$set: {"profile.todayOrTomorrow" : 'today'}
+      })
+    }
+  })
+
+  Template.userSettings.events({
+    'click .tomorrowsHeights' : function() {
+      Meteor.users.update(
+        {_id:Meteor.userId()},
+        {$set: {"profile.todayOrTomorrow" : 'tomorrow'}
+      })
+    }
+  })
+
  
   Template.userSettings.events({
     'click .verifiedTrue' : function () {
@@ -144,7 +234,7 @@ Meteor.startup(function () {
       Meteor.users.update(
         {_id:Meteor.userId()},
         {
-        $set: {"profile.verified" : true}
+        $set: {"profile.todayOrTomorrow" : true}
       });
     }
   })
@@ -234,6 +324,141 @@ Meteor.startup(function () {
             {_id:Meteor.userId()},
             {
               $set: {"profile.notifyShores.west" : false}
+            });
+         }
+      break;
+    }       
+    }
+  })
+
+  //Switch statement sending day of the week button clicks to DB //
+  Template.userSettings.events({
+    'click .day': function (e) {
+       console.log(e.target.id) 
+       switch (e.target.id) {
+   case "mon":
+        if (Meteor.users.findOne(
+          {_id:Meteor.userId()},
+          {fields: {profile:1}}).profile.notifyDays.mon === false) {
+           
+          Meteor.users.update(
+          {_id:Meteor.userId()},
+          {
+            $set: {"profile.notifyDays.mon" : true}
+          });
+       } else {
+           Meteor.users.update(
+          {_id:Meteor.userId()},
+          {
+            $set: {"profile.notifyDays.mon" : false}
+          });
+       }
+      break;
+   case "tue":
+          if (Meteor.users.findOne(
+          {_id:Meteor.userId()},
+          {fields: {profile:1}}).profile.notifyDays.tue === false) {
+           
+          Meteor.users.update(
+          {_id:Meteor.userId()},
+          {
+            $set: {"profile.notifyDays.tue" : true}
+          });
+       } else {
+           Meteor.users.update(
+          {_id:Meteor.userId()},
+          {
+            $set: {"profile.notifyDays.tue" : false}
+          });
+       }
+      break;
+   case "wed":
+      if (Meteor.users.findOne(
+              {_id:Meteor.userId()},
+              {fields: {profile:1}}).profile.notifyDays.wed === false) {
+               
+              Meteor.users.update(
+              {_id:Meteor.userId()},
+              {
+                $set: {"profile.notifyDays.wed" : true}
+              });
+           } else {
+               Meteor.users.update(
+              {_id:Meteor.userId()},
+              {
+                $set: {"profile.notifyDays.wed" : false}
+              });
+           }
+      break;
+   case "thu":
+    if (Meteor.users.findOne(
+            {_id:Meteor.userId()},
+            {fields: {profile:1}}).profile.notifyDays.thu === false) {
+             
+            Meteor.users.update(
+            {_id:Meteor.userId()},
+            {
+              $set: {"profile.notifyDays.thu" : true}
+            });
+         } else {
+             Meteor.users.update(
+            {_id:Meteor.userId()},
+            {
+              $set: {"profile.notifyDays.thu" : false}
+            });
+         }
+      break;
+   case "fri":
+    if (Meteor.users.findOne(
+            {_id:Meteor.userId()},
+            {fields: {profile:1}}).profile.notifyDays.fri === false) {
+             
+            Meteor.users.update(
+            {_id:Meteor.userId()},
+            {
+              $set: {"profile.notifyDays.fri" : true}
+            });
+         } else {
+             Meteor.users.update(
+            {_id:Meteor.userId()},
+            {
+              $set: {"profile.notifyDays.fri" : false}
+            });
+         }
+      break;
+   case "sat":
+    if (Meteor.users.findOne(
+            {_id:Meteor.userId()},
+            {fields: {profile:1}}).profile.notifyDays.sat === false) {
+             
+            Meteor.users.update(
+            {_id:Meteor.userId()},
+            {
+              $set: {"profile.notifyDays.sat" : true}
+            });
+         } else {
+             Meteor.users.update(
+            {_id:Meteor.userId()},
+            {
+              $set: {"profile.notifyDays.sat" : false}
+            });
+         }
+      break;
+   case "sun":
+    if (Meteor.users.findOne(
+            {_id:Meteor.userId()},
+            {fields: {profile:1}}).profile.notifyDays.sun === false) {
+             
+            Meteor.users.update(
+            {_id:Meteor.userId()},
+            {
+              $set: {"profile.notifyDays.sun" : true}
+            });
+         } else {
+             Meteor.users.update(
+            {_id:Meteor.userId()},
+            {
+              $set: {"profile.notifyDays.sun" : false}
             });
          }
       break;

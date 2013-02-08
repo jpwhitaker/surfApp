@@ -30,6 +30,8 @@ if (Meteor.isServer) {
         || line.match(/(west)/g),
         line.match((/\d{1,2}( to )\d{1,2}/g))
         || line.match(/\d{1,2}( feet through )/g)
+        || line.match(/\d{1,2}( ft or less )/g)
+        || line.match(/\d{1,2}( feet or less )/g)
       ] 
     });
 

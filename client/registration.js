@@ -8,15 +8,17 @@ if (Meteor.isClient){
         'username':phoneNumber,
         'password':verifyPin,
         'profile' : {
-          'verifyPin'    : verifyPin,
-          'verified'     : false,
-          'notifyHeight' : [3,5],
-          'notifyShores' : {'north':false, 'south':false, 'east':false, 'west':false},
-          'notifyTime'   : {'hours':6, 'minutes':00, 'amPm':'AM'},
-          'notifyText'   : false,
-          'notifyEmail'  : false,
-          'email'        : '',
-          'notifications': true
+          'verifyPin'       : verifyPin,
+          'verified'        : false,
+          'notifyHeight'    : [3,5],
+          'notifyShores'    : {'north':false, 'south':false, 'east':false, 'west':false},
+          'notifyDays'      : {'mon':false, 'tue':false, 'wed':false, 'thu':false, 'fri':false, 'sat':false, 'sun':false},
+          'todayOrTomorrow' : {'todayOrTomorrow':'today'},
+          'notifyTime'      : {'hours':6, 'minutes':00, 'amPm':'AM'},
+          'notifyText'      : false,
+          'notifyEmail'     : false,
+          'email'           : '',
+          'notifications'   : true
         },
       }, 
       function(error){console.log(error)})

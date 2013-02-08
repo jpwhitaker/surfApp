@@ -24,9 +24,10 @@
        </div>   
 
         {{#if currentUser}}
-          {{> adminPage}} <!-- change back to userSettings -->
+          {{> adminPage}} {{> userSettings}} <!-- change back to userSettings -->
         {{else}}
           {{> signUp}}
+          {{> footer}}
           {{/if}}
       </div>
 
@@ -52,6 +53,15 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="footer">
+  <div class="row">
+  <div class="span6">
+    <div class="pull-right inline-block"> - About - Contact - </div>
+  </div>  
+  </div>
+
 </template>
 
 

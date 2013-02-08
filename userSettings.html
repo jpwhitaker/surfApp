@@ -3,7 +3,7 @@
 
   <p><div class="alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Verified:</strong> {{verified}}
+  <strong>Thank you for registering!</strong> {{verified}}
   </div></p>
 
   <form class="form-horizontal">
@@ -14,22 +14,13 @@
         <button type="button" class="btn btn-success verifyButton">Verify your number</button>
       </div>
     </div>
-
-    <div class="control-group">
-      <label class="control-label" for="btn-group">Notify by text:</label>
-      <div class="controls">
-        <div class="btn-group" data-toggle="buttons-radio">
-        <button type="button" class="btn btn-primary notifyTextTrue {{notifyTextTrue}}">On</button>
-        <button type="button" class="btn btn-primary notifyTextFalse {{notifyTextFalse}}">Off</button>
-        </div>
-      </div>
-    </div>
-
+    <h2>Surf Options</h2>
+    
     <div class="control-group">
       <label class="control-label" for="input-append">Notify by height:</label>
       <div class="controls">
         <div class="input-append">
-    <!-- Odd bug where minHeight gets value from maxHeight, fixed with empty string in minHeight-->
+    <!-- minHeight gets value from maxHeight, fixed with empty string in minHeight-->
           <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}" value="" type="text">
           <span class="add-on">ft</span>
           </div> to <div class="input-append">
@@ -50,6 +41,45 @@
         </div>
       </div>
     </div>
+
+    <h2>Text Options</h2>
+
+    <div class="control-group">
+      <label class="control-label" for="btn-group">Notifications:</label>
+      <div class="controls">
+        <div class="btn-group" data-toggle="buttons-radio">
+        <button type="button" class="btn btn-primary notifyTextTrue {{notifyTextTrue}}">On</button>
+        <button type="button" class="btn btn-primary notifyTextFalse {{notifyTextFalse}}">Off</button>
+        </div>
+      </div>
+    </div>
+
+        <div class="control-group">
+      <label class="control-label" for="btn-group">Send updates on:</label>
+      <div class="controls">
+        <div class="btn-group" data-toggle="buttons-checkbox">
+          <button type="button" id="mon" class="btn btn-primary day {{monActive}}">Mon</button>
+          <button type="button" id="tue" class="btn btn-primary day {{tueActive}}">Tue</button>
+          <button type="button" id="wed" class="btn btn-primary day {{wedActive}}">Wed</button>
+          <button type="button" id="thu" class="btn btn-primary day {{thuActive}}">Thu</button>
+          <button type="button" id="fri" class="btn btn-primary day {{friActive}}">Fri</button>
+          <button type="button" id="sat" class="btn btn-primary day {{satActive}}">Sat</button>
+          <button type="button" id="sun" class="btn btn-primary day {{sunActive}}">Sun</button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="btn-group">Text me:</label>
+      <div class="controls">
+        <div class="btn-group" data-toggle="buttons-radio">
+        <button type="button" class="btn btn-primary todaysHeights {{today}}">Today's heights</button>
+        <button type="button" class="btn btn-primary tomorrowsHeights {{tomorrow}}">Tomorrow's heights</button>
+        </div>
+      </div>
+    </div>
+
 
     <div class="control-group">
       <label class="control-label" for="hours">Send text at:</label>

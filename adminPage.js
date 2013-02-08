@@ -5,7 +5,6 @@ Meteor.startup(function () {
     
     Template.adminPage.northMin = function(){
     var northHeight = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:-1}})
-    console.log(northHeight)
       return northHeight && northHeight.north.min;
     }
     Template.adminPage.northMax = function(){
@@ -42,13 +41,11 @@ Meteor.startup(function () {
   //tomorrow's unverified heights
     Template.adminPage.tomorrowNorthMin = function(){
     var northHeight = SurfHeights.findOne({tomorrow:{$exists:true}}, {sort:{createdAt:-1}})
-    console.log("Yooooloooo", 
-      northHeight && northHeight.north.tomorrowMin,"YOOLLOOOO!")
+    
       return northHeight && northHeight.north.min;
     }
     Template.adminPage.tomorrowNorthMax = function(){
     var northHeight = SurfHeights.findOne({tomorrow:{$exists:true}}, {sort:{tomorrow:-1}})
-      console.log(northHeight && northHeight)
       return northHeight && northHeight.north.max;
     }
 
@@ -84,6 +81,14 @@ Meteor.startup(function () {
 
   Template.adminPage.events({
     'click .verifyData' : function() {
+      //refactor:
+      //       _each(['north','south','east','west'], function (dir) {
+      //   todayVerified[dir] = {
+      //   min:document.querySelector('.todayMin' + dir).value,
+      //    max:document.querySelector('.todayMax' + dir).value
+      //  }
+      // })
+
       //today
       todayVerified.north = 
         {min:document.querySelector('.todayMinNorth').value,
