@@ -39,7 +39,7 @@ var westHeight = verifiedData.findOne({today:{$exists:true}}, {sort:{today:-1}})
 
 //Returns Today's verified maximum Heights
 Template.heightTable.northMax = function(){
-var northHeight = verifiedData.findOne({today:{$exists:true}}, {sort:{today:1}})
+var northHeight = verifiedData.findOne({today:{$exists:true}}, {sort:{today:-1}})
   
   return northHeight && northHeight.north.max;
 }
@@ -79,7 +79,7 @@ var westHeight = verifiedData.findOne({tomorrow:{$exists:true}}, {sort:{tomorrow
 
 //Returns Tomorrow's verified maximum Heights
 Template.heightTable.tomorrowNorthMax = function(){
-var northHeight = verifiedData.findOne({tomorrow:{$exists:true}}, {sort:{tomorrow:1}})
+var northHeight = verifiedData.findOne({tomorrow:{$exists:true}}, {sort:{tomorrow:-1}})
   
   return northHeight && northHeight.north.max;
 }

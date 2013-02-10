@@ -88,36 +88,55 @@ var checkUser = function(){
   var heights = verifiedData.findOne({today:{$exists:true}}, {sort:{today:-1}})
   var tomorrowsHeights = verifiedData.findOne({tomorrow:{$exists:true}}, {sort:{tomorrow:-1}})
 
+  var textUser = function(textMessage, user){
+    Meteor.call('sendText', user,textMessage)
+  }
+
+
   var matchWaveSettings = _.filter(notificationsOn, function(user){
     var shore = user.profile.notifyShores;
     var userHeight = user.profile.notifyHeight;
 
-    if(shore.north === true && userHeight[0] >= heights.north.min && userHeight[1]<= heights.north.max){
-      console.log('called');
-    } else if (shore.south === true && userHeight[0] >= heights.south.min && userHeight[1]<= heights.south.max){
-      console.log('called');
-    } else if (shore.east === true && userHeight[0] >= heights.east.min && userHeight[1]<= heights.east.max){
-      console.log('called');
-    } else if (shore.west === true && userHeight[0] >= heights.west.min && userHeight[1]<= heights.west.max){
-      console.log('called');
+    var generateSurfReport = function(day){
+      var whichDay = '';
+      if(user.profile.todayOrTomorrow === 'today'){
+        whichDay = "Today's"
+      } else {
+        whichDay = "Tomorrow's"
+      };
+      textMessage = "Surf's up! " + whichDay + " surf forecast: North is "
+      + day.north.min + "'-" + day.north.max + "', South is "
+      + day.south.min + "'-" + day.south.max + "', East is "
+      + day.east.min + "'-" + day.east.max + "', West is "
+      + day.west.min + "'-" + day.west.max + "'. Brought to you by Tsunani.com";
+
+      textUser(textMessage, user);
     }
+
+
+    var todayOrTomorrow = function(day){
+      if(shore.north === true && userHeight[0] >= day.north.min && userHeight[1]<= day.north.max){
+        generateSurfReport(day);
+      } else if (shore.south === true && userHeight[0] >= day.south.min && userHeight[1]<= day.south.max){
+        generateSurfReport(day);
+      } else if (shore.east === true && userHeight[0] >= day.east.min && userHeight[1]<= day.east.max){
+        generateSurfReport(day);
+      } else if (shore.west === true && userHeight[0] >= day.west.min && userHeight[1]<= day.west.max){
+        generateSurfReport(day);
+      }
+    }
+
+    if(user.profile.todayOrTomorrow === 'today'){
+      todayOrTomorrow(heights)
+    } else {todayOrTomorrow(tomorrowsHeights)};
+  
+
 
   });
 
-
+    
 
 
   // matchWaveSettings();
 
-  var callUser = function(){
-
-    _.each(notificationsOn, function(user){
-
-      console.log(user.username);
-      console.log(matchingTimes);
-      console.log(notificationsOn);
-      Meteor.call('sendText', user + 'remove to send text','Surfs up!  North is 10, 15 ft today!')
-    })
-  }
-  callUser();
 }

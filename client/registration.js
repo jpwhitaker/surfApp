@@ -13,7 +13,7 @@ if (Meteor.isClient){
           'notifyHeight'    : [3,5],
           'notifyShores'    : {'north':false, 'south':false, 'east':false, 'west':false},
           'notifyDays'      : {'mon':false, 'tue':false, 'wed':false, 'thu':false, 'fri':false, 'sat':false, 'sun':false},
-          'todayOrTomorrow' : {'todayOrTomorrow':'today'},
+          'todayOrTomorrow' : 'today',
           'notifyTime'      : {'hours':6, 'minutes':00, 'amPm':'AM'},
           'notifyText'      : false,
           'notifyEmail'     : false,
