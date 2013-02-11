@@ -1,9 +1,3 @@
-Meteor.setInterval(function(){console.log('checking Users')}
-  ,60000);
-var sendSurfReport= function(){
-  checkUser();
-}
-
 var checkUser = function(){
 
   var currentHour = moment.utc().subtract('hours',10).format('h')
@@ -15,8 +9,9 @@ var checkUser = function(){
   //check if day and time matches
   var matchingTimes = _.filter(allUsers, function(user){
     //making user test cases match for testing purposes
-    user.profile.notifyTime.hours = currentHour;
-    user.profile.notifyTime.minutes = currentMinute;
+    // user.profile.notifyTime.hours = currentHour;
+    // user.profile.notifyTime.minutes = currentMinute;
+
     var checkDay = function(currentDay){
       switch (currentDay) {
      case "Monday":
@@ -89,6 +84,8 @@ var checkUser = function(){
   var tomorrowsHeights = verifiedData.findOne({tomorrow:{$exists:true}}, {sort:{tomorrow:-1}})
 
   var textUser = function(textMessage, user){
+    console.trace()
+    console.log('textuser')
     Meteor.call('sendText', user,textMessage)
   }
 
@@ -98,6 +95,7 @@ var checkUser = function(){
     var userHeight = user.profile.notifyHeight;
 
     var generateSurfReport = function(day){
+      console.log('generateSurfReport')
       var whichDay = '';
       if(user.profile.todayOrTomorrow === 'today'){
         whichDay = "Today's"
@@ -130,13 +128,11 @@ var checkUser = function(){
       todayOrTomorrow(heights)
     } else {todayOrTomorrow(tomorrowsHeights)};
   
-
-
   });
-
-    
-
-
-  // matchWaveSettings();
-
 }
+
+if (Meteor.isServer) {
+Meteor.setInterval(function(){
+  checkUser();
+console.log('checking Users')
+},60000);}

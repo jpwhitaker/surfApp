@@ -171,6 +171,22 @@ Meteor.startup(function () {
     })
   }
 
+  Template.userSettings.amSelected = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyTime.amPm === 'AM'){
+      return 'selected';
+    }; 
+  };
+
+    Template.userSettings.pmSelected = function(){
+    if(Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.notifyTime.amPm === 'PM'){
+      return 'selected';
+    }; 
+  };
+
   //some meteor magic going on here
   Template.userSettings.showTime = function(){
     Session.get('time')
