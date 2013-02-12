@@ -1,6 +1,12 @@
 <template name="userSettings">
   <h1>{{currentUser.username}}</h1>
 
+
+{{#if isAdmin}}
+  {{> adminPage}}
+{{/if}}
+  
+
   <p><div class="alert">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>Thank you for registering!</strong> {{verified}}

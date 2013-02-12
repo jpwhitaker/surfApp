@@ -1,5 +1,19 @@
 Meteor.startup(function () {
  
+  Template.userSettings.isAdmin = function(){  
+    var currentUser = Meteor.user();
+
+    if( currentUser.username === 'admin'){
+      console.log(true);
+      return true;
+    } else {
+      console.log(false);
+      return false;
+    }
+
+  }
+
+
   Template.userSettings.profile = function(){  
     if(! Meteor.loggingIn()){
       //necessary to load template before getting user data.  ask CJ about ui-bootstrap
