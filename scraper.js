@@ -14,10 +14,10 @@ if (Meteor.isServer) {
   function parseData(xml) {
     var splitLines = xml.split(/(<p>)/g)
     var grabDirections = _.filter(splitLines, function(line){ 
-      return line.match(/(along north)/g) == "along north" 
-      || line.match(/(along south)/g) == "along south"
-      || line.match(/(along east)/g) == "along east"
-      || line.match(/(along west)/g) == "along west"
+      return line.match(/(Surf along north)/g) == "Surf along north" 
+      || line.match(/(Surf along south)/g) == "Surf along south"
+      || line.match(/(Surf along east)/g) == "Surf along east"
+      || line.match(/(Surf along west)/g) == "Surf along west"
 
     })
 
@@ -46,7 +46,7 @@ if (Meteor.isServer) {
       return [array[0], heights]
     })
     
-    console.log(grabDirections);
+    console.log(grabDirections, '!!!!!!!!!!!!');
     console.log(dirWaveHeightValues)
     console.log("------",dirWaveHeightValues[0][1][0],dirWaveHeightValues[0][1][0][0])
     var unconfirmedData = {
