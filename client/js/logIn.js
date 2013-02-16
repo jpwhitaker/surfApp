@@ -10,7 +10,6 @@ Template.logIn.events({
   'click .logInButton' : function(e) {
     Meteor.loginWithPassword(document.querySelector('#login').value,
     document.querySelector('#password').value)
-    console.log('clicked')
   },
 
  'click .logInLink' : function(e) {
@@ -18,12 +17,9 @@ Template.logIn.events({
   }
 })
 
-
-
-
-  Template.logIn.show = function(){
-    return Session.get("showLogin")
-  }
+Template.logIn.show = function(){
+  return Session.get("showLogin")
+}
 
 
 

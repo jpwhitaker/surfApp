@@ -20,8 +20,6 @@ var westHeight = SurfHeights.findOne({west:{$exists:true}}, {sort:{createdAt:-1}
 Template.heightTable.northMin = function(){
 
 var northHeight = verifiedData.findOne({today:{$exists:true}}, {sort:{today:-1}})
-    console.log(northHeight,"LOGGING")
-
   return northHeight && northHeight.north.min;
 }
 Template.heightTable.southMin = function(){

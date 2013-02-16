@@ -4,10 +4,8 @@ Meteor.startup(function () {
     var currentUser = Meteor.user();
 
     if( currentUser.username === 'admin'){
-      console.log(true);
       return true;
     } else {
-      console.log(false);
       return false;
     }
 
