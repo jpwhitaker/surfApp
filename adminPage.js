@@ -3,9 +3,10 @@ verifiedData = new Meteor.Collection("verifiedData");
 Meteor.startup(function () {
 
   if (Meteor.isClient){
-    
+
     var dirs = ['North', 'South', 'East', 'West'];
-    var ranges = ['Min','Max']
+    var ranges = ['Min','Max'];
+
 
     _.each(dirs, function(dir){
       _.each(ranges, function(range){
