@@ -1,4 +1,3 @@
-SurfHeights = new Meteor.Collection("surfheights");
 
 if (Meteor.isServer) {
   Meteor.methods({scrapeData:scrapeData})
