@@ -20,6 +20,7 @@ if (Meteor.isServer) {
 
     })
 
+    grabDirections = grabDirections.slice(0,4);
 
     var dirWaveHeight = _.map(grabDirections, function(line){
       return [
@@ -31,6 +32,7 @@ if (Meteor.isServer) {
         || line.match(/\d{1,2}( feet through )/g)
         || line.match(/\d{1,2}( ft or less )/g)
         || line.match(/\d{1,2}( feet or less )/g)
+        || line.match(/( flat to )\d{1,2}/g)
       ] 
     });
 

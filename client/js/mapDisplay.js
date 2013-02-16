@@ -1,7 +1,8 @@
+Meteor.subscribe("verifiedData");
+
 Template.map.north = function(){
 var northHeight = SurfHeights.findOne({north:{$exists:true}}, {sort:{createdAt:-1}})
   return northHeight && northHeight.north;
-
 }
 Template.map.south = function(){
 var southHeight = SurfHeights.findOne({south:{$exists:true}}, {sort:{createdAt:-1}})

@@ -1,6 +1,8 @@
 Meteor.startup(function () {
 
   if (Meteor.isClient){
+    
+    Meteor.subscribe("SurfHeights");
 
     var dirs = ['North', 'South', 'East', 'West'];
     var ranges = ['Min','Max'];
