@@ -504,6 +504,40 @@ Meteor.startup(function () {
     }
   })
 
+  //save values of inputs that arent toggles as they lose focus
+  Template.userSettings.events({
+    'blur .minHeight': function(){
+      console.log('saved min')
+      if(document.querySelector('.minHeight').value !== ''){
+        Meteor.users.update(
+          {_id:Meteor.userId()},
+          {$set: {"profile.notifyHeight.0" : 
+          +document.querySelector('.minHeight').value }
+        });
+      }
+    }
+  })
+
+    Template.userSettings.events({
+    'blur .maxHeight': function(){
+      console.log('saved max')
+      if(document.querySelector('.maxHeight').value !== ''){
+        Meteor.users.update(
+          {_id:Meteor.userId()},
+          {$set: {"profile.notifyHeight.1" : 
+          +document.querySelector('.maxHeight').value }
+        });
+      }
+    }
+  })
+
+      Template.userSettings.events({
+  'focus .maxHeight': function(){
+    console.log('focus max')
+    $('.maxHeight').focus()
+  }
+})
+
   //save button for saving values that arent toggles
   Template.userSettings.events({
     'click .save': function () {

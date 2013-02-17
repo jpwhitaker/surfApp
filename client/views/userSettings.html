@@ -14,14 +14,19 @@
     <div class="control-group">
       <label class="control-label" for="input-append">Notify by height:</label>
       <div class="controls">
+          {{#isolate}}
         <div class="input-append">
     <!-- minHeight gets value from maxHeight, fixed with empty string in minHeight-->
           <input class="input-mini minHeight" id="appendedInput" placeholder="{{minHeight}}" value="" type="text">
           <span class="add-on">ft</span>
-          </div> to <div class="input-append">
+          </div>
+          {{/isolate}}
+          {{#isolate}}
+           to <div class="input-append">
           <input class="input-mini maxHeight" id="appendedInput" placeholder="{{maxHeight}}"  type="text">
           <span class="add-on">ft</span>
         </div>
+          {{/isolate}}
       </div>
     </div>
 
