@@ -47,10 +47,11 @@
 
   <div class="row">
     <div class="span6">
-      <div class="pull-right"><form class="form-inline">
-        <strong>Get free text alerts when the surf is up!</strong> <input type="text" id="phoneNumber" placeholder="808-555-5555"/>
+      <div class="pull-right"><form class="form-inline control-group">
+        <strong>Get free text alerts when the surf is up!</strong> <input type="text" class="input-small phoneNumber" placeholder="808-555-5555"/>
         <button type="button" class="btn btn-success" id="submit">Sign Up!</button>
-        </form>
+        </form> 
+        <span class="label label-important pull-right">{{validNumber}}</span>
       </div>
     </div>
   </div>
@@ -59,7 +60,9 @@
 <template name="footer">
   <div class="row">
   <div class="span6">
-    <div class="pull-right inline-block"> - About - Contact - </div>
+    <hr>
+    <div class="pull-right inline-block footer muted">
+    <a href='#'>About</a> | <a href='#'>Contact</a> | <a href='http://www.prh.noaa.gov/hnl/pages/SRF.php'>Surf Data from the NOAA</a></div>
   </div>  
   </div>
 
