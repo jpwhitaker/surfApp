@@ -8,6 +8,7 @@ var signUp = function () {
     'profile' : {
       'verifyPin'       : verifyPin,
       'verified'        : false,
+      'verificationSent': false,
       'notifyHeight'    : [3,5],
       'notifyShores'    : {'north':false, 'south':false, 'east':false, 'west':false},
       'notifyDays'      : {'mon':false, 'tue':false, 'wed':false, 'thu':false, 'fri':false, 'sat':false, 'sun':false},
@@ -40,7 +41,14 @@ Template.signUp.validNumber = function(){
     if(phoneNumber.match(/\d{3}(-)\d{3}(-)\d{4}/)){
       signUp();
       } else {
+      Session.set('signUpError', 0);
       return "Please enter a valid number!";
     }
+  }
+}
+
+Template.signUp.userExists = function(){
+  if(Session.get('signUpError')===403){
+    return "That phone number is already in use!";
   }
 }

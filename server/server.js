@@ -31,15 +31,26 @@ if (Meteor.isServer) {
     })
 
     Accounts.onCreateUser(function(options,user){
+      var userExists = function(user){
+        if(Meteor.users.findOne({username:user.username})){
+          console.log('ALREADY EXISTS');
+          return true;
+        } else {
+          console.log("NEW USER")
+          return false;
+        }
+      }
 
+      if(!userExists(user)){
       verifyNumber(user, options);
+      }
+
       user.password = options.password;
       if (options.profile){
         user.profile = options.profile;
         return user;
       } 
     });
-    console.log(Meteor.users.find().fetch())
   });
 }
 
