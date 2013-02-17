@@ -8,8 +8,8 @@ Meteor.startup(function () {
     } else {
       return false;
     }
-
   }
+
 
 
   Template.userSettings.profile = function(){  
@@ -22,10 +22,21 @@ Meteor.startup(function () {
  
   //Display functions//
   Template.userSettings.verified = function(){
+    return Meteor.users.findOne(
+      {_id:Meteor.userId()},
+      {fields: {profile:1}}).profile.verified
+  }
+
+
+
+  Template.unverified.verified = function(){
     if (Meteor.users.findOne(
       {_id:Meteor.userId()},
       {fields: {profile:1}}).profile.verified === false){
       return "Verify your account to receive updates!"
+    }
+    else{
+      return true;
     }
   }
 
@@ -206,8 +217,9 @@ Meteor.startup(function () {
 
   //Events//
   //Sets profile.verified to true if the pin matches
-  Template.userSettings.events({
+  Template.unverified.events({
     'click .verifyButton' : function() {
+      console.log(Meteor.users.findOne({_id:Meteor.userId()},{fields: {profile:1}}).profile.verifyPin, +document.getElementById('pin').value)
       if (Meteor.users.findOne({_id:Meteor.userId()},{fields: {profile:1}}).profile.verifyPin 
       === +document.getElementById('pin').value){
         Meteor.users.update(

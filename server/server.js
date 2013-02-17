@@ -33,9 +33,7 @@ if (Meteor.isServer) {
     Accounts.onCreateUser(function(options,user){
       //checks to see if user exists; if it does return user (onCreate can only be called once)
       //else it modifies the new user and texts them
-      if(Meteor.users.find({'username':user.username})){
-        return user;
-      }
+     
 
       verifyNumber(user, options);
       user.password = options.password;
