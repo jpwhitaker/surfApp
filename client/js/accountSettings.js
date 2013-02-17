@@ -208,6 +208,18 @@ Meteor.startup(function () {
     }; 
   };
 
+  // Template.userSettings.onChange = function(){
+  //   Meteor.users.update(
+  //     {_id:Meteor.userId()},
+  //     {$set: {"profile.notifyTime" : {
+  //       'hours':document.querySelector('#hours').value,
+  //       'minutes':document.querySelector('#mins').value,
+  //       'amPm':document.querySelector('#amPm').value}
+  //     }
+  //   });
+  // }
+
+
   //some meteor magic going on here
   Template.userSettings.showTime = function(){
     Session.get('time')
@@ -504,7 +516,7 @@ Meteor.startup(function () {
     }
   })
 
-  //save values of inputs that arent toggles as they lose focus
+  // save values of inputs that arent toggles as they lose focus
   Template.userSettings.events({
     'blur .minHeight': function(){
       console.log('saved min')
@@ -514,11 +526,13 @@ Meteor.startup(function () {
           {$set: {"profile.notifyHeight.0" : 
           +document.querySelector('.minHeight').value }
         });
+        document.querySelector('.minHeight').placeholder = document.querySelector('.minHeight').value;
+        document.querySelector('.minHeight').value = '';
       }
     }
   })
 
-    Template.userSettings.events({
+  Template.userSettings.events({
     'blur .maxHeight': function(){
       console.log('saved max')
       if(document.querySelector('.maxHeight').value !== ''){
@@ -527,16 +541,51 @@ Meteor.startup(function () {
           {$set: {"profile.notifyHeight.1" : 
           +document.querySelector('.maxHeight').value }
         });
+        document.querySelector('.maxHeight').placeholder = document.querySelector('.maxHeight').value;
+        document.querySelector('.maxHeight').value = '';
       }
     }
   })
 
-      Template.userSettings.events({
-  'focus .maxHeight': function(){
-    console.log('focus max')
-    $('.maxHeight').focus()
-  }
-})
+  Template.userSettings.events({
+    'mouseleave #hours': function(){
+        Meteor.users.update(
+        {_id:Meteor.userId()},
+        {$set: {"profile.notifyTime" : {
+          'hours':document.querySelector('#hours').value,
+          'minutes':document.querySelector('#mins').value,
+          'amPm':document.querySelector('#amPm').value}
+        }
+      });
+    }
+  })
+
+  Template.userSettings.events({
+    'mouseleave #mins': function(){
+        Meteor.users.update(
+        {_id:Meteor.userId()},
+        {$set: {"profile.notifyTime" : {
+          'hours':document.querySelector('#hours').value,
+          'minutes':document.querySelector('#mins').value,
+          'amPm':document.querySelector('#amPm').value}
+        }
+      });
+    }
+  })
+
+  Template.userSettings.events({
+    'mouseleave #amPm': function(){
+        Meteor.users.update(
+        {_id:Meteor.userId()},
+        {$set: {"profile.notifyTime" : {
+          'hours':document.querySelector('#hours').value,
+          'minutes':document.querySelector('#mins').value,
+          'amPm':document.querySelector('#amPm').value}
+        }
+      });
+    }
+  })
+
 
   //save button for saving values that arent toggles
   Template.userSettings.events({
