@@ -76,10 +76,9 @@ Meteor.startup(function () {
         {min:document.querySelector('.tomorrowMinWest').value,
          max:document.querySelector('.tomorrowMaxWest').value}
         
-
-      console.log(todayVerified,tomorrowVerified)
-      verifiedData.insert(todayVerified);
-      verifiedData.insert(tomorrowVerified);
+        Meteor.call('insertVerifiedData',
+                    todayVerified,
+                    tomorrowVerified)
       }   
     });
 
