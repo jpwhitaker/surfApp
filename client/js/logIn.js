@@ -8,8 +8,11 @@ Template.logOut.events({
 
 Template.logIn.events({
   'click .logInButton' : function(e) {
+    console.log('clickedLogin',document.querySelector('#login').value,document.querySelector('#password').value)
     Meteor.loginWithPassword(document.querySelector('#login').value,
-    document.querySelector('#password').value)
+    +document.querySelector('#password').value, function(error){
+      console.log(error)
+    })
   },
 
  'click .logInLink' : function(e) {

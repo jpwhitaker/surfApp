@@ -1,5 +1,5 @@
 <template name="userSettings">
-  <h3>Welcome, {{currentUser.username}}!</h3><hr>
+  <h3>{{#constant}}Welcome,{{/constant}} {{currentUser.username}}!</h3><hr>
 
 {{#if isAdmin}}
   {{> adminPage}}

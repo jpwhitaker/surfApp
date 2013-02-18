@@ -3,7 +3,7 @@ Meteor.startup(function () {
   Template.userSettings.isAdmin = function(){  
     var currentUser = Meteor.user();
 
-    if( currentUser.username === 'admin'){
+    if( currentUser.username === '808-225-6917'){
       return true;
     } else {
       return false;

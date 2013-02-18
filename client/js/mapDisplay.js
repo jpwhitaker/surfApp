@@ -1,8 +1,8 @@
 Meteor.subscribe("verifiedData");
 
 Template.map.north = function(){
-var northHeight = SurfHeights.findOne({north:{$exists:true}}, {sort:{createdAt:-1}})
-  return northHeight && northHeight.north;
+var northHeight = verifiedData.findOne({today:{$exists:true}}, {sort:{today:-1}})
+  return northHeight && northHeight.north.min;
 }
 Template.map.south = function(){
 var southHeight = SurfHeights.findOne({south:{$exists:true}}, {sort:{createdAt:-1}})
@@ -16,6 +16,129 @@ Template.map.west = function(){
 var westHeight = SurfHeights.findOne({west:{$exists:true}}, {sort:{createdAt:-1}})
   return westHeight && westHeight.west;
 }
+
+//map svg
+Meteor.startup(function () {
+  var svg = d3.select(".circleSVG").append('svg')
+
+
+  svg.append("circle")
+      .attr("class", "dot")
+      .attr("cx", + 115)
+      .attr("cy", + 30)
+      .attr("r", 10)
+      .attr('fill', '#0099bb');
+  setInterval(function() {
+    svg.append("circle")
+        .attr("class", "ring")
+        .attr("transform", "translate(115,30)")
+        .attr("r", 30)
+        .style("stroke-width", 3)
+        .style("stroke", "#0099bb")
+        .style("stroke-opacity", 1e-6)
+        .attr('fill', 'none')
+      .transition()
+        .ease("linear")
+        .duration(6000)
+        .style("stroke-opacity", 1)
+        .style("stroke-width", 1)
+        .style("stroke", "#0099bb")
+        .attr("r", 6)
+        .attr('fill', 'none')
+        .remove();
+  }, 2000);
+
+    svg.append("circle")
+      .attr("class", "dot")
+      .attr("cx", + 50)
+      .attr("cy", + 170)
+      .attr("r", 10)
+      .attr('fill', '#0099bb');
+  setInterval(function() {
+    svg.append("circle")
+        .attr("class", "ring")
+        .attr("transform", "translate(50,170)")
+        .attr("r", 30)
+        .style("stroke-width", 3)
+        .style("stroke", "#0099bb")
+        .style("stroke-opacity", 1e-6)
+        .attr('fill', 'none')
+      .transition()
+        .ease("linear")
+        .duration(6000)
+        .style("stroke-opacity", 1)
+        .style("stroke-width", 1)
+        .style("stroke", "#0099bb")
+        .attr("r", 6)
+        .attr('fill', 'none')
+        .remove();
+  }, 2000);
+
+      svg.append("circle")
+      .attr("class", "dot")
+      .attr("cx", + 185)
+      .attr("cy", + 220)
+      .attr("r", 10)
+      .attr('fill', '#0099bb');
+  setInterval(function() {
+    svg.append("circle")
+        .attr("class", "ring")
+        .attr("transform", "translate(185,220)")
+        .attr("r", 30)
+        .style("stroke-width", 3)
+        .style("stroke", "#0099bb")
+        .style("stroke-opacity", 1e-6)
+        .attr('fill', 'none')
+      .transition()
+        .ease("linear")
+        .duration(6000)
+        .style("stroke-opacity", 1)
+        .style("stroke-width", 1)
+        .style("stroke", "#0099bb")
+        .attr("r", 6)
+        .attr('fill', 'none')
+        .remove();
+  }, 2000);
+
+        svg.append("circle")
+      .attr("class", "dot")
+      .attr("cx", + 245)
+      .attr("cy", + 185)
+      .attr("r", 10)
+      .attr('fill', '#0099bb')
+      .attr('opacity', 50);
+
+  setInterval(function() {
+    svg.append("circle")
+        .attr("class", "ring")
+        .attr("transform", "translate(245,185)")
+        .attr("r", 30)
+        .style("stroke-width", 3)
+        .style("stroke", "#0099bb")
+        .style("stroke-opacity", 1e-6)
+        .attr('fill', 'none')
+      .transition()
+        .ease("linear")
+        .duration(6000)
+        .style("stroke-opacity", 1)
+        .style("stroke-width", 1)
+        .style("stroke", "#0099bb")
+        .attr("r", 6)
+        .attr('fill', 'none')
+        .remove();
+  }, 2000);
+
+
+  // svg.append("svg:text")
+  //     .attr("class", "text1")
+  //     .attr("x", 215)
+  //     .attr("y", 185)
+  //     .attr('fill', 'white')
+  //     .text('12-16');
+
+
+})
+
 
 //Returns Today's verified Minimum Heights
 Template.heightTable.northMin = function(){
