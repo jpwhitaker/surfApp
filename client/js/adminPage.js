@@ -2,31 +2,31 @@ Meteor.startup(function () {
 
   if (Meteor.isClient){
     
-    Meteor.subscribe("SurfHeights");
+  //   Meteor.subscribe("SurfHeights");
 
-    var dirs = ['North', 'South', 'East', 'West'];
-    var ranges = ['Min','Max'];
+  //   var dirs = ['North', 'South', 'East', 'West'];
+  //   var ranges = ['Min','Max'];
 
 
-    _.each(dirs, function(dir){
-      _.each(ranges, function(range){
-        Template.adminPage[dir.toLowerCase() + range] = function(){
-          var height = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:-1}})
-          return height && height[dir.toLowerCase()][range.toLowerCase()];
-        }
-      })
-    })
+  //   _.each(dirs, function(dir){
+  //     _.each(ranges, function(range){
+  //       Template.adminPage[dir.toLowerCase() + range] = function(){
+  //         var height = SurfHeights.findOne({today:{$exists:true}}, {sort:{today:-1}})
+  //         return height && height[dir.toLowerCase()][range.toLowerCase()];
+  //       }
+  //     })
+  //   })
 
-  //tomorrow's unverified heights
+  // //tomorrow's unverified heights
 
-    _.each(dirs, function(dir){
-      _.each(ranges, function(range){
-        Template.adminPage['tomorrow'+ dir + range] = function(){
-          var height = SurfHeights.findOne({tomorrow:{$exists:true}}, {sort:{tomorrow:-1}})
-          return height && height[dir.toLowerCase()][range.toLowerCase()];
-        }
-      })
-    })
+  //   _.each(dirs, function(dir){
+  //     _.each(ranges, function(range){
+  //       Template.adminPage['tomorrow'+ dir + range] = function(){
+  //         var height = SurfHeights.findOne({tomorrow:{$exists:true}}, {sort:{tomorrow:-1}})
+  //         return height && height[dir.toLowerCase()][range.toLowerCase()];
+  //       }
+  //     })
+  //   })
 
   
   var todayVerified = {today:Date.now()};

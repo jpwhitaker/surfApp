@@ -1,8 +1,7 @@
-Meteor.subscribe("verifiedData");
 
 //map svg USING TIMEOUT
 
-Meteor.setTimeout(function () {
+var drawCircles = function(){
   $('.carousel').carousel({
     interval: 7000
     })
@@ -157,4 +156,7 @@ Meteor.setTimeout(function () {
   //     .text('12-16');
 
 
-},1000)
+}
+
+Meteor.subscribe("verifiedData", drawCircles);
+
