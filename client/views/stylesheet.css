@@ -59,8 +59,40 @@ body {
   color:white;
   font-size: 28px;
   font-family: 'Lobster', cursive;
+    text-shadow: rgba(0,0,0,0.75) 1px 1px 2px;
+
+}
+.caption2Header {
+  position: absolute;
+  margin-left: 65px;
+  margin-top: 30px;
+  color:white;
+  font-size: 28px;
+  font-family: 'Lobster', cursive;
+    text-shadow: rgba(0,0,0,0.75) 1px 1px 2px;
 }
 
+.caption2{
+  font-family: 'Quicksand', sans-serif;
+  font-size: 22px;
+  font-weight: 200;
+  line-height: 26px;
+}
+
+.caption3Header {
+  position: absolute;
+  margin-left: 195px;
+  margin-top: 70px;
+  color:white;
+  font-size: 42px;
+  font-family: 'Lobster', cursive;
+    text-shadow: rgba(0,0,0,0.75) 1px 1px 2px;
+
+}
+
+.carousel-control {
+  margin-top: 0px !important;
+}
 .caption1 {
   position: absolute;
   margin-left: 215px;

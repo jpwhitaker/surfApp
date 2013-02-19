@@ -1,8 +1,11 @@
 Meteor.subscribe("verifiedData");
- 
+
 //map svg USING TIMEOUT
 
 Meteor.setTimeout(function () {
+  $('.carousel').carousel({
+    interval: 7000
+    })
   var svg = d3.select(".circleSVG").append('svg')
   var surfHeight = verifiedData.findOne({today:{$exists:true}}, {sort:{today:-1}})
   var northMax = surfHeight && surfHeight.north.max;
