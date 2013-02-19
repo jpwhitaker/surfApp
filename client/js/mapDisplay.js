@@ -24,7 +24,6 @@ Meteor.subscribe("verifiedData");
 
 //Returns Today's verified Minimum Heights
 Template.heightTable.northMin = function(){
-
 var northHeight = verifiedData.findOne({today:{$exists:true}}, {sort:{today:-1}})
   return northHeight && northHeight.north.min;
 }
@@ -44,7 +43,6 @@ var westHeight = verifiedData.findOne({today:{$exists:true}}, {sort:{today:-1}})
 //Returns Today's verified maximum Heights
 Template.heightTable.northMax = function(){
 var northHeight = verifiedData.findOne({today:{$exists:true}}, {sort:{today:-1}})
-  
   return northHeight && northHeight.north.max;
 }
 Template.heightTable.southMax = function(){

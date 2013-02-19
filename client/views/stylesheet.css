@@ -52,6 +52,29 @@ body {
   margin-top: 20px;
 }
 
+.caption1Header {
+  position: absolute;
+  margin-left: 215px;
+  margin-top: 20px;
+  color:white;
+  font-size: 28px;
+  font-family: 'Lobster', cursive;
+}
+
+.caption1 {
+  position: absolute;
+  margin-left: 215px;
+  margin-top: 60px;
+  color:white;
+  font-size: 22px;
+  text-shadow: rgba(0,0,0,0.75) 1px 1px 2px;
+
+}
+
+.caption1 li {
+  padding-bottom: 10px;
+  text-shadow: rgba(0,0,0,0.75) 0px 1px 3px; 
+}
 
 .footer {
   margin-top: -10px;
