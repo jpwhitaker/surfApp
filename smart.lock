@@ -1,0 +1,19 @@
+{
+  "meteor": {
+    "git": "https://github.com/meteor/meteor.git",
+    "branch": "master",
+    "commit": "405cd9e86c6336bd9aaa7a8f240bb9815dceed2d"
+  },
+  "dependencies": {
+    "basePackages": {
+      "font-awesome": {}
+    },
+    "packages": {
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v0.1.3",
+        "commit": "e507577b97827de662866304f8b9d3d553e3912f"
+      }
+    }
+  }
+}

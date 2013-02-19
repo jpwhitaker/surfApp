@@ -1,5 +1,5 @@
 body {
-  background-color: #0099bb;
+  background-color: #0099bb !important;
   padding: 20px;
 }
 .surfTable {
@@ -14,7 +14,19 @@ body {
   background-color: white;
   border-radius: 10px;
   padding:10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
+.header {
+  margin-bottom: 10px;
+}
+
+.mapAndTable {
+  margin-bottom: 20px;
+}
+
+
 .logIn {
     margin-top: 15px;
 
@@ -33,8 +45,11 @@ body {
   width:570px;
   height:462px;
   border: 1px solid black;
-
   position: absolute;
+}
+
+#myCarousel {
+  margin-top: 20px;
 }
 
 
@@ -44,7 +59,7 @@ body {
 
 .circleSVG {
   position: absolute;
-  width:270px;
+  width:300px;
   height:250px;
   border: solid 0px #dddddd;
   border-radius: 3px;

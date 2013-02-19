@@ -7,8 +7,8 @@ preserve-inputs
 accounts-base
 accounts-password
 accounts-ui
-bootstrap
 email
 http
 underscore
 d3
+font-awesome
