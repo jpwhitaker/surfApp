@@ -2,6 +2,7 @@ Template.logOut.events({
   'click .logOut' : function(e) {
     if(e.target.id === "logOut"){
       Meteor.logout();
+      Meteor.setTimeout(drawCircles, 1000)
     }
   }
 })

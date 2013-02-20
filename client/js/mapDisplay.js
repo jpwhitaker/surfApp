@@ -1,5 +1,4 @@
 Meteor.subscribe("verifiedData");
-
 // Template.map.north = function(){
 // var northHeight = verifiedData.findOne({today:{$exists:true}}, {sort:{today:-1}})
 //   return northHeight && northHeight.north.min;

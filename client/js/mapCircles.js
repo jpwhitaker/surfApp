@@ -12,7 +12,6 @@ var drawCircles = function(){
   var eastMax =surfHeight &&surfHeight.east.max;
   var westMax =surfHeight &&surfHeight.west.max;
   var dirSum = (Number(northMax)+Number(southMax)+Number(eastMax)+Number(westMax))
-  console.log(dirSum);
 
   var largestHeight = Math.max(northMax,southMax,eastMax,westMax)
 
@@ -28,9 +27,6 @@ var drawCircles = function(){
   var southRing = +southMax / largestHeight * ringMax +10;
   var eastRing = +eastMax / largestHeight * ringMax +10;
   var westRing = +westMax / largestHeight * ringMax +10;
-
-  console.log(northDot, southDot, eastDot, westDot, largestHeight)
-  console.log(northRing, southRing, eastRing, westRing, largestHeight)
 
   svg.append("circle")
       .attr("class", "north")
